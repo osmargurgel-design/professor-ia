@@ -397,17 +397,11 @@ def send_question(question: str, file_data: dict = None):
         err_str = str(e)
         if "429" in err_str or "quota" in err_str.lower() or "rate" in err_str.lower():
             retry_secs = extract_retry_seconds(err_str)
-            # Se retornou o padrão (60s) e tem indício de cota diária → bloqueia por 12h
             eh_cota_diaria = any(p in err_str.lower() for p in ["quota", "exhausted", "resource_exhausted", "daily"])
             if retry_secs <= 60 and eh_cota_diaria:
                 retry_secs = 43200  # 12 horas
             st.session_state.rate_limit_until = datetime.now() + timedelta(seconds=retry_secs)
-            st.markdown(
-                f"""<div class='rate-limit-box'>⏳ <strong>Limite de uso atingido!</strong><br>
-                O plano gratuito do Gemini tem {format_rate_limit_message(retry_secs)}<br>
-                <strong>Aguarde {retry_secs} segundo(s)</strong> e tente novamente.</div>""",
-                unsafe_allow_html=True,
-            )
+            st.rerun()  # o banner de rate limit já cuida do display formatado
         elif "503" in err_str or "unavailable" in err_str.lower() or "alta demanda" in err_str.lower():
             st.session_state.error_msg = (
                 "<div class='rate-limit-box'>🌐 <strong>Servidor ocupado no momento!</strong><br>"
