@@ -558,7 +558,7 @@ if submitted and (user_input.strip() or st.session_state.get("attached_file")):
 # ─── Rodapé ───────────────────────────────────────────────────────────────────
 st.markdown(
     "<p style='text-align:center;color:rgba(255,255,255,0.18);font-size:11px;margin-top:30px'>"
-    "Professor IA · Ensino Médio Brasileiro · Powered by Gemini · Use as respostas como apoio, não como cola! ✍️"
+    "Professor IA · Desenvolvido por Osmar Gurgel · Powered by Gemini · Use as respostas como apoio, não como cola! ✍️"
     "</p>",
     unsafe_allow_html=True,
 )
