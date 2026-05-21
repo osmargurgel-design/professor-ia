@@ -256,7 +256,28 @@ for msg in st.session_state.messages:
                 )
             b64 = base64.b64encode(msg["content"].encode()).decode()
             st.markdown(
-                f"""<button class="copy-btn" onclick="navigator.clipboard.writeText(atob('{b64}')).then(()=>{{this.innerHTML='✅ Copiado!';setTimeout(()=>{{this.innerHTML='📋 Copiar'}},2000)}})">📋 Copiar</button>""",
+                f"""<button class="copy-btn" onclick="(function(btn,b){{
+                    var t=atob(b);
+                    var ok=function(){{btn.innerHTML='✅ Copiado!';setTimeout(function(){{btn.innerHTML='📋 Copiar'}},2000);}};
+                    var fail=function(){{btn.innerHTML='❌ Erro';setTimeout(function(){{btn.innerHTML='📋 Copiar'}},2000);}};
+                    if(navigator.clipboard&&navigator.clipboard.writeText){{
+                        navigator.clipboard.writeText(t).then(ok).catch(function(){{execFallback(t,ok,fail);}});
+                    }}else{{execFallback(t,ok,fail);}}
+                    function execFallback(txt,ok,fail){{
+                        var el=document.createElement('textarea');
+                        el.value=txt;
+                        el.style.cssText='position:fixed;top:0;left:0;opacity:0;font-size:16px';
+                        el.contentEditable=true;el.readOnly=false;
+                        document.body.appendChild(el);
+                        var range=document.createRange();
+                        range.selectNodeContents(el);
+                        var sel=window.getSelection();
+                        sel.removeAllRanges();sel.addRange(range);
+                        el.setSelectionRange(0,99999);
+                        try{{document.execCommand('copy')?ok():fail();}}catch(e){{fail();}}
+                        document.body.removeChild(el);
+                    }}
+                }})(this,'{b64}')">📋 Copiar</button>""",
                 unsafe_allow_html=True,
             )
 
