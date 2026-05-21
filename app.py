@@ -265,12 +265,27 @@ if st.session_state.get("rate_limit_until"):
     now = datetime.now()
     if now < st.session_state.rate_limit_until:
         wait_secs = int((st.session_state.rate_limit_until - now).total_seconds())
-        st.markdown(
-            f"""<div class='rate-limit-box'>⏳ <strong>Limite da API atingido!</strong><br>
-            Aguarde <strong>{wait_secs} segundo(s)</strong> antes de tentar novamente.<br>
-            <small>✍️ Aproveite para reler as respostas e anotar com suas próprias palavras!</small></div>""",
-            unsafe_allow_html=True,
-        )
+        if wait_secs >= 3600:
+            st.markdown(
+                """<div class='rate-limit-box'>⚠️ <strong>Limite diário do Gemini atingido.</strong><br>
+                O plano gratuito permite um número limitado de perguntas por dia.<br>
+                O serviço será restabelecido automaticamente <strong>amanhã</strong>.<br>
+                <small>Enquanto isso, revise as respostas anteriores e pratique com suas anotações. ✍️</small></div>""",
+                unsafe_allow_html=True,
+            )
+        elif wait_secs >= 60:
+            mins = wait_secs // 60
+            st.markdown(
+                f"""<div class='rate-limit-box'>⏳ <strong>Limite de requisições por minuto atingido.</strong><br>
+                O sistema aceita um número limitado de perguntas por minuto.<br>
+                Aguarde <strong>{mins} minuto(s)</strong> e o serviço voltará normalmente.</div>""",
+                unsafe_allow_html=True,
+            )
+        else:
+            st.markdown(
+                f"""<div class='rate-limit-box'>⏳ Muitas requisições simultâneas. Aguarde <strong>{wait_secs} segundo(s)</strong> e tente novamente.</div>""",
+                unsafe_allow_html=True,
+            )
         time.sleep(1)
         st.rerun()
     else:
@@ -382,6 +397,10 @@ def send_question(question: str, file_data: dict = None):
         err_str = str(e)
         if "429" in err_str or "quota" in err_str.lower() or "rate" in err_str.lower():
             retry_secs = extract_retry_seconds(err_str)
+            # Se retornou o padrão (60s) e tem indício de cota diária → bloqueia por 12h
+            eh_cota_diaria = any(p in err_str.lower() for p in ["quota", "exhausted", "resource_exhausted", "daily"])
+            if retry_secs <= 60 and eh_cota_diaria:
+                retry_secs = 43200  # 12 horas
             st.session_state.rate_limit_until = datetime.now() + timedelta(seconds=retry_secs)
             st.markdown(
                 f"""<div class='rate-limit-box'>⏳ <strong>Limite de uso atingido!</strong><br>
