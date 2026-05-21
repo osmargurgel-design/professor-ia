@@ -113,11 +113,14 @@ def extract_retry_seconds(error_str: str) -> int:
 
 # ─── Formatar mensagem amigável de rate limit ─────────────────────────────────
 def format_rate_limit_message(seconds: int) -> str:
-    if seconds < 60:
-        return f"um limite de requisições por minuto. Aguarde **{seconds} segundos**."
+    if seconds < 120:
+        return f"muitas perguntas em pouco tempo! Aguarde **{seconds} segundos** e tente novamente. ⏳"
     elif seconds < 3600:
         minutes = seconds // 60
-        return f"um limite diário de requisições. Aguarde **{minutes} minuto(s)**."
+        return f"muitas perguntas em pouco tempo! Aguarde **{minutes} minuto(s)** e tente novamente. ⏳"
     else:
-        hours = seconds // 3600
-        return f"o limite diário atingido. Aguarde **{hours} hora(s)**."
+        return (
+            "o limite de uso de hoje foi atingido. 😔\n\n"
+            "O Professor IA estará disponível novamente **amanhã**! "
+            "Aproveite para revisar as respostas anteriores e anotar com suas próprias palavras. ✍️"
+        )
