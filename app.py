@@ -344,7 +344,7 @@ def send_question(question: str, file_data: dict = None):
             config=types.GenerateContentConfig(
                 system_instruction=SYSTEM_PROMPT_TEMPLATE.format(subject=current_subject["label"]),
                 safety_settings=SAFETY_SETTINGS,
-                max_output_tokens=1000,
+                max_output_tokens=2500,
             ),
         )
 
