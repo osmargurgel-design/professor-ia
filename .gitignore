@@ -1,0 +1,11 @@
+# Segurança — nunca subir para o GitHub
+.env
+secrets.toml
+.streamlit/secrets.toml
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
