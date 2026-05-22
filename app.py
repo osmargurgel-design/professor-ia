@@ -271,7 +271,7 @@ for msg in st.session_state.messages:
                         var copied=false;
                         try{{copied=document.execCommand('copy');}}catch(e){{}}
                         document.body.removeChild(el);
-                        if(copied){{ok();}}else{{window.prompt('Selecione tudo e copie (Ctrl+A → Ctrl+C):',txt);}}
+                        if(copied){{ok();}}else{{window.prompt('📋 Selecione o texto abaixo e copie:',txt);}}
                     }}
                 }})(this,'{b64}')">📋 Copiar</button>""",
                 unsafe_allow_html=True,
@@ -370,11 +370,21 @@ def send_question(question: str, file_data: dict = None):
         )
         user_parts.append({"text": text_prompt})
 
+        system_instruction = SYSTEM_PROMPT_TEMPLATE.format(subject=current_subject["label"])
+        if current_subject["id"] == "ingles":
+            system_instruction += (
+                "\n\n## IMPORTANT — English subject:\n"
+                "Since the subject is English, ALWAYS respond in English. "
+                "This helps students practice reading and understanding English. "
+                "You may add Portuguese translations in parentheses only when introducing new vocabulary. "
+                "Encourage students to write their answers in English too."
+            )
+
         stream = client.models.generate_content_stream(
             model="gemini-2.5-flash",
             contents=history + [{"role": "user", "parts": user_parts}],
             config=types.GenerateContentConfig(
-                system_instruction=SYSTEM_PROMPT_TEMPLATE.format(subject=current_subject["label"]),
+                system_instruction=system_instruction,
                 safety_settings=SAFETY_SETTINGS,
                 max_output_tokens=2500,
             ),
