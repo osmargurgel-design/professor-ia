@@ -259,23 +259,19 @@ for msg in st.session_state.messages:
                 f"""<button class="copy-btn" onclick="(function(btn,b){{
                     var t=atob(b);
                     var ok=function(){{btn.innerHTML='✅ Copiado!';setTimeout(function(){{btn.innerHTML='📋 Copiar'}},2000);}};
-                    var fail=function(){{btn.innerHTML='❌ Erro';setTimeout(function(){{btn.innerHTML='📋 Copiar'}},2000);}};
                     if(navigator.clipboard&&navigator.clipboard.writeText){{
-                        navigator.clipboard.writeText(t).then(ok).catch(function(){{execFallback(t,ok,fail);}});
-                    }}else{{execFallback(t,ok,fail);}}
-                    function execFallback(txt,ok,fail){{
+                        navigator.clipboard.writeText(t).then(ok).catch(function(){{fallback(t,btn,ok);}});
+                    }}else{{fallback(t,btn,ok);}}
+                    function fallback(txt,btn,ok){{
                         var el=document.createElement('textarea');
                         el.value=txt;
                         el.style.cssText='position:fixed;top:0;left:0;opacity:0;font-size:16px';
-                        el.contentEditable=true;el.readOnly=false;
                         document.body.appendChild(el);
-                        var range=document.createRange();
-                        range.selectNodeContents(el);
-                        var sel=window.getSelection();
-                        sel.removeAllRanges();sel.addRange(range);
-                        el.setSelectionRange(0,99999);
-                        try{{document.execCommand('copy')?ok():fail();}}catch(e){{fail();}}
+                        el.focus();el.select();el.setSelectionRange(0,99999);
+                        var copied=false;
+                        try{{copied=document.execCommand('copy');}}catch(e){{}}
                         document.body.removeChild(el);
+                        if(copied){{ok();}}else{{window.prompt('Selecione tudo e copie (Ctrl+A → Ctrl+C):',txt);}}
                     }}
                 }})(this,'{b64}')">📋 Copiar</button>""",
                 unsafe_allow_html=True,
