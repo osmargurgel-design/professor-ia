@@ -377,16 +377,12 @@ def send_question(question: str, file_data: dict = None):
         )
 
         full_text = ""
-        _rendered_len = 0
         for chunk in stream:
             if chunk.text:
                 full_text += chunk.text
-                # Atualiza UI a cada ~40 chars para não sobrecarregar o Streamlit
-                if len(full_text) - _rendered_len >= 40:
-                    stream_placeholder.markdown(full_text + "▌")
-                    _rendered_len = len(full_text)
+                stream_placeholder.write(full_text + "▌")
         if full_text:
-            stream_placeholder.markdown(full_text + "▌")
+            stream_placeholder.write(full_text)
 
         tip = None
         tip_match = re.search(r"\[DICA\](.*?)(\[/DICA\]|$)", full_text, re.DOTALL)
