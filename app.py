@@ -254,26 +254,10 @@ for msg in st.session_state.messages:
                     f"<div class='sources-box'>📚 <strong>Fontes:</strong><br>{msg['sources'].replace(chr(10), '<br>')}</div>",
                     unsafe_allow_html=True,
                 )
-            b64 = base64.b64encode(msg["content"].encode()).decode()
+            import urllib.parse
+            wa_text = urllib.parse.quote(msg["content"])
             st.markdown(
-                f"""<button class="copy-btn" onclick="(function(btn,b){{
-                    var t=atob(b);
-                    var ok=function(){{btn.innerHTML='✅ Copiado!';setTimeout(function(){{btn.innerHTML='📋 Copiar'}},2000);}};
-                    if(navigator.clipboard&&navigator.clipboard.writeText){{
-                        navigator.clipboard.writeText(t).then(ok).catch(function(){{fallback(t,btn,ok);}});
-                    }}else{{fallback(t,btn,ok);}}
-                    function fallback(txt,btn,ok){{
-                        var el=document.createElement('textarea');
-                        el.value=txt;
-                        el.style.cssText='position:fixed;top:0;left:0;opacity:0;font-size:16px';
-                        document.body.appendChild(el);
-                        el.focus();el.select();el.setSelectionRange(0,99999);
-                        var copied=false;
-                        try{{copied=document.execCommand('copy');}}catch(e){{}}
-                        document.body.removeChild(el);
-                        if(copied){{ok();}}else{{window.prompt('📋 Selecione o texto abaixo e copie:',txt);}}
-                    }}
-                }})(this,'{b64}')">📋 Copiar</button>""",
+                f"""<a class="copy-btn" href="https://wa.me/?text={wa_text}" target="_blank" style="text-decoration:none">📲 Compartilhar no WhatsApp</a>""",
                 unsafe_allow_html=True,
             )
 
@@ -373,11 +357,13 @@ def send_question(question: str, file_data: dict = None):
         system_instruction = SYSTEM_PROMPT_TEMPLATE.format(subject=current_subject["label"])
         if current_subject["id"] == "ingles":
             system_instruction += (
-                "\n\n## IMPORTANT — English subject:\n"
-                "Since the subject is English, ALWAYS respond in English. "
-                "This helps students practice reading and understanding English. "
-                "You may add Portuguese translations in parentheses only when introducing new vocabulary. "
-                "Encourage students to write their answers in English too."
+                "\n\n## Matéria: Inglês — instruções específicas:\n"
+                "- SEMPRE responda em português do Brasil, pois é a língua do aluno\n"
+                "- Ao ensinar vocabulário, apresente: palavra em inglês → tradução em português → exemplo de uso\n"
+                "- Organize o conteúdo em tópicos claros com títulos\n"
+                "- Só responda em inglês se o aluno EXPLICITAMENTE pedir para praticar em inglês\n"
+                "- Seja didático: explique gramática, pronúncia e contexto de uso de cada palavra/expressão\n"
+                "- Formato de vocabulário: **palavra** (pronúncia) — tradução — 'exemplo em inglês'\n"
             )
 
         stream = client.models.generate_content_stream(
