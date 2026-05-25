@@ -5,7 +5,7 @@ import time
 import re
 import os
 import base64
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from dotenv import load_dotenv
 from config import SUBJECTS, SYSTEM_PROMPT_TEMPLATE
 from utils import (
@@ -279,7 +279,8 @@ with st.sidebar:
 # ─── Cabeçalho ────────────────────────────────────────────────────────────────
 current_subject = next(s for s in SUBJECTS if s["id"] == st.session_state.subject)
 
-_hour = datetime.now().hour
+_brasilia = timezone(timedelta(hours=-3))
+_hour = datetime.now(_brasilia).hour
 _greeting = "Bom dia" if _hour < 12 else "Boa tarde" if _hour < 18 else "Boa noite"
 
 st.markdown(
