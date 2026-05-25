@@ -88,6 +88,7 @@ def init_session_state():
         "pendente_sensivel": None,
         "pendente_ambiguo": None,
         "processing": False,
+        "pending_question": None,
         "retry_pending": None,
         "error_msg": None,
     }

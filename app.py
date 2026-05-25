@@ -19,6 +19,8 @@ from utils import (
     checar_topico_sensivel,
 )
 
+VERSION = "25/05"
+
 def load_api_key() -> str:
     try:
         return st.secrets["GEMINI_API_KEY"]
@@ -650,16 +652,25 @@ with st.form("question_form", clear_on_submit=True):
             disabled=_processing,
         )
 
+# Ao submeter: salva a pergunta, marca processing=True e faz rerun IMEDIATAMENTE.
+# No próximo run o botão já nasce desabilitado — elimina a janela do duplo clique.
 if submitted and (user_input.strip() or st.session_state.get("attached_file")) and not _processing:
     file_data = st.session_state.pop("attached_file", None)
     if file_data:
         st.session_state.fu_key += 1
-    send_question(user_input.strip(), file_data)
+    st.session_state.pending_question = {"question": user_input.strip(), "file": file_data}
+    st.session_state.processing = True
+    st.rerun()
+
+# No run seguinte, executa a pergunta pendente (botão já está desabilitado)
+if st.session_state.get("pending_question"):
+    pq = st.session_state.pop("pending_question")
+    send_question(pq["question"], pq.get("file"))
 
 # ─── Rodapé ───────────────────────────────────────────────────────────────────
 st.markdown(
-    "<p style='text-align:center;color:rgba(255,255,255,0.18);font-size:11px;margin-top:30px'>"
-    "Professor IA · Desenvolvido por Osmar Gurgel · Powered by Gemini · Use as respostas como apoio, não como cola! ✍️"
-    "</p>",
+    f"<p style='text-align:center;color:rgba(255,255,255,0.18);font-size:11px;margin-top:30px'>"
+    f"Professor IA · v{VERSION} · Desenvolvido por Osmar Gurgel · Powered by Gemini · Use as respostas como apoio, não como cola! ✍️"
+    f"</p>",
     unsafe_allow_html=True,
 )
