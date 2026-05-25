@@ -219,8 +219,9 @@ h1, h2, h3 { color: white !important; }
 
 # ─── Estado e chave ───────────────────────────────────────────────────────────
 init_session_state()
-if not st.session_state.get("api_key"):
-    st.session_state.api_key = load_api_key()
+st.session_state.api_key = load_api_key()  # DEBUG: recarrega sempre
+_k = st.session_state.api_key
+st.sidebar.caption(f"DEBUG key: {_k[:8]}...{_k[-4:] if len(_k) > 12 else '???'}")
 
 # ─── Sidebar ──────────────────────────────────────────────────────────────────
 with st.sidebar:
