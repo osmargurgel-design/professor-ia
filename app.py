@@ -458,6 +458,14 @@ def send_question(question: str, file_data: dict = None, skip_ambiguity: bool = 
             st.session_state.retry_pending = {"question": question, "file": file_data}
             st.rerun()
 
+    finally:
+        # Roda sempre — inclusive quando o Streamlit interrompe o script por duplo clique.
+        # Se processing ainda está True aqui, a stream foi abandonada: desfaz e limpa.
+        if st.session_state.get("processing"):
+            if st.session_state.messages and st.session_state.messages[-1]["role"] == "user":
+                st.session_state.messages.pop()
+            st.session_state.processing = False
+
 # ─── Portão de contexto (tópico sensível) ─────────────────────────────────────
 if st.session_state.get("pendente_sensivel"):
     pend = st.session_state.pendente_sensivel
