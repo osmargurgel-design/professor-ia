@@ -10,12 +10,17 @@ def _normalizar(texto: str) -> str:
     return unicodedata.normalize("NFKD", texto).encode("ascii", "ignore").decode()
 
 # Tier 1 — termos vulgares: bloqueia imediatamente
-_TERMOS_VULGARES = [
-    "penis", "vagina", "vulva", "porra", "buceta", "pau ", " pau",
-    "piroca", "xota", "xoxota", "rola ", " rola", "cu ", " cu",
-    "anus", "sexo oral", "boquete", "chupeta", "transar", "foder",
-    "fuder", "gozar", "ejacular", "orgasmo", "masturb", "punheta",
-    "siririca", "sacanagem",
+# Termos exatos: só batem como palavra isolada (não em "Cubas", "Paula", "parola")
+_TERMOS_VULGARES_EXATOS = [
+    "penis", "vagina", "vulva", "porra", "buceta", "pau",
+    "piroca", "xota", "xoxota", "rola", "cu", "anus",
+    "boquete", "chupeta", "transar", "foder", "fuder",
+    "gozar", "ejacular", "orgasmo", "punheta", "siririca", "sacanagem",
+    "sexo oral",
+]
+# Termos prefixo: basta começar com isso (masturb → masturbação, masturbar)
+_TERMOS_VULGARES_PREFIXO = [
+    "masturb",
 ]
 
 # Tier 2 — frases que indicam interesse no ATO em si, não no conteúdo curricular
@@ -35,13 +40,17 @@ _PADROES_SENSIVEIS = [
 
 def checar_linguagem(pergunta: str) -> str | None:
     normalizado = _normalizar(pergunta)
-    for termo in _TERMOS_VULGARES:
-        if _normalizar(termo) in normalizado:
-            return (
-                "🧑‍🏫 Essa pergunta usa uma linguagem que não é adequada para o ambiente escolar. "
-                "O Professor IA trabalha com a linguagem científica do livro didático. "
-                "Consulte seu material e reformule usando os termos corretos da matéria!"
-            )
+    _AVISO = (
+        "🧑‍🏫 Essa pergunta usa uma linguagem que não é adequada para o ambiente escolar. "
+        "O Professor IA trabalha com a linguagem científica do livro didático. "
+        "Consulte seu material e reformule usando os termos corretos da matéria!"
+    )
+    for termo in _TERMOS_VULGARES_EXATOS:
+        if re.search(r'\b' + re.escape(_normalizar(termo)) + r'\b', normalizado):
+            return _AVISO
+    for termo in _TERMOS_VULGARES_PREFIXO:
+        if re.search(r'\b' + re.escape(_normalizar(termo)), normalizado):
+            return _AVISO
     return None
 
 def checar_topico_sensivel(pergunta: str) -> bool:
