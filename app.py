@@ -7,7 +7,7 @@ import os
 import base64
 from datetime import datetime, timedelta, timezone
 from dotenv import load_dotenv
-from config import SUBJECTS, SYSTEM_PROMPT_TEMPLATE
+from config import SUBJECTS, SYSTEM_PROMPT_TEMPLATE, SYSTEM_PROMPT_ENEM
 from utils import (
     format_rate_limit_message,
     extract_retry_seconds,
@@ -19,7 +19,7 @@ from utils import (
     checar_topico_sensivel,
 )
 
-VERSION = "25/05 · UI1"
+VERSION = "25/05 · UI2"
 
 def load_api_key() -> str:
     try:
@@ -237,7 +237,7 @@ with st.sidebar:
 
     st.markdown("<p class='sidebar-section'>📘 Matérias</p>", unsafe_allow_html=True)
     for s in SUBJECTS:
-        if s["id"] == "diversos":
+        if s["id"] in ("diversos", "enem"):
             continue
         active = st.session_state.subject == s["id"]
         if st.button(
@@ -250,6 +250,20 @@ with st.sidebar:
                 st.session_state.subject = s["id"]
                 st.session_state.messages = []
                 st.rerun()
+
+    st.markdown("<p class='sidebar-section'>🤖 IA & ENEM</p>", unsafe_allow_html=True)
+    s_enem = next(s for s in SUBJECTS if s["id"] == "enem")
+    active_enem = st.session_state.subject == "enem"
+    if st.button(
+        f"{s_enem['emoji']}  {s_enem['label']}",
+        key="sb_enem",
+        use_container_width=True,
+        type="primary" if active_enem else "secondary",
+    ):
+        if not active_enem:
+            st.session_state.subject = "enem"
+            st.session_state.messages = []
+            st.rerun()
 
     st.markdown("<p class='sidebar-section'>💬 Modo Livre</p>", unsafe_allow_html=True)
     s_div = next(s for s in SUBJECTS if s["id"] == "diversos")
@@ -436,25 +450,28 @@ def send_question(question: str, file_data: dict = None, skip_ambiguity: bool = 
         )
         user_parts.append({"text": text_prompt})
 
-        system_instruction = SYSTEM_PROMPT_TEMPLATE.format(subject=current_subject["label"])
-        if current_subject["id"] == "diversos":
-            system_instruction += (
-                "\n\n## Modo: Assuntos Diversos\n"
-                "O aluno não selecionou uma matéria específica. Você pode responder perguntas "
-                "de qualquer disciplina do ensino médio ou dúvidas gerais do dia a dia escolar. "
-                "Identifique a área do conhecimento da pergunta e responda como especialista nela. "
-                "Mantenha sempre o foco educacional e as regras de segurança para menores."
-            )
-        if current_subject["id"] == "ingles":
-            system_instruction += (
-                "\n\n## Matéria: Inglês — instruções específicas:\n"
-                "- SEMPRE responda em português do Brasil, pois é a língua do aluno\n"
-                "- Ao ensinar vocabulário, apresente: palavra em inglês → tradução em português → exemplo de uso\n"
-                "- Organize o conteúdo em tópicos claros com títulos\n"
-                "- Só responda em inglês se o aluno EXPLICITAMENTE pedir para praticar em inglês\n"
-                "- Seja didático: explique gramática, pronúncia e contexto de uso de cada palavra/expressão\n"
-                "- Formato de vocabulário: **palavra** (pronúncia) — tradução — 'exemplo em inglês'\n"
-            )
+        if current_subject["id"] == "enem":
+            system_instruction = SYSTEM_PROMPT_ENEM
+        else:
+            system_instruction = SYSTEM_PROMPT_TEMPLATE.format(subject=current_subject["label"])
+            if current_subject["id"] == "diversos":
+                system_instruction += (
+                    "\n\n## Modo: Assuntos Diversos\n"
+                    "O aluno não selecionou uma matéria específica. Você pode responder perguntas "
+                    "de qualquer disciplina do ensino médio ou dúvidas gerais do dia a dia escolar. "
+                    "Identifique a área do conhecimento da pergunta e responda como especialista nela. "
+                    "Mantenha sempre o foco educacional e as regras de segurança para menores."
+                )
+            if current_subject["id"] == "ingles":
+                system_instruction += (
+                    "\n\n## Matéria: Inglês — instruções específicas:\n"
+                    "- SEMPRE responda em português do Brasil, pois é a língua do aluno\n"
+                    "- Ao ensinar vocabulário, apresente: palavra em inglês → tradução em português → exemplo de uso\n"
+                    "- Organize o conteúdo em tópicos claros com títulos\n"
+                    "- Só responda em inglês se o aluno EXPLICITAMENTE pedir para praticar em inglês\n"
+                    "- Seja didático: explique gramática, pronúncia e contexto de uso de cada palavra/expressão\n"
+                    "- Formato de vocabulário: **palavra** (pronúncia) — tradução — 'exemplo em inglês'\n"
+                )
 
         stream = client.models.generate_content_stream(
             model="gemini-2.5-flash",
@@ -462,7 +479,7 @@ def send_question(question: str, file_data: dict = None, skip_ambiguity: bool = 
             config=types.GenerateContentConfig(
                 system_instruction=system_instruction,
                 safety_settings=SAFETY_SETTINGS,
-                max_output_tokens=2500,
+                max_output_tokens=3500 if current_subject["id"] == "enem" else 2500,
                 thinking_config=types.ThinkingConfig(thinking_budget=0),
             ),
         )
