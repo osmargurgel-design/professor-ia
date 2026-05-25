@@ -350,6 +350,46 @@ for msg in st.session_state.messages:
                 unsafe_allow_html=True,
             )
 
+# ─── Card de boas-vindas do Modo ENEM ────────────────────────────────────────
+if current_subject["id"] == "enem" and not st.session_state.messages:
+    st.markdown("""
+<div style="background:rgba(230,126,34,0.07);border:1px solid rgba(230,126,34,0.22);
+            border-radius:18px;padding:24px 26px;margin:4px 0 20px">
+
+  <div style="text-align:center;margin-bottom:20px">
+    <div style="font-size:2.4rem;margin-bottom:6px">🎯</div>
+    <p style="color:#F5CBA7;font-size:1.1rem;font-weight:700;margin:0 0 4px">Modo ENEM — Preparatório Inteligente</p>
+    <p style="color:rgba(255,255,255,0.40);font-size:13px;margin:0">
+      Diga o que precisa e eu me adapto. Escolha uma das opções abaixo:</p>
+  </div>
+
+  <div style="display:flex;flex-direction:column;gap:10px">
+
+    <div style="background:rgba(255,255,255,0.04);border-left:3px solid #E67E22;
+                border-radius:0 12px 12px 0;padding:12px 16px">
+      <p style="color:#F5CBA7;font-weight:600;margin:0 0 3px">📋 Cole uma questão (A / B / C / D / E)</p>
+      <p style="color:rgba(255,255,255,0.50);font-size:13px;margin:0">
+        Analiso cada alternativa, identifico a competência ENEM e explico o raciocínio completo.</p>
+    </div>
+
+    <div style="background:rgba(255,255,255,0.04);border-left:3px solid #E67E22;
+                border-radius:0 12px 12px 0;padding:12px 16px">
+      <p style="color:#F5CBA7;font-weight:600;margin:0 0 3px">🔍 Digite apenas um tema</p>
+      <p style="color:rgba(255,255,255,0.50);font-size:13px;margin:0">
+        Explico como o ENEM costuma cobrar aquele conteúdo e trago um exemplo de questão.</p>
+    </div>
+
+    <div style="background:rgba(255,255,255,0.04);border-left:3px solid #E67E22;
+                border-radius:0 12px 12px 0;padding:12px 16px">
+      <p style="color:#F5CBA7;font-weight:600;margin:0 0 3px">🏋️ "Quero treinar" ou "Me dê uma questão"</p>
+      <p style="color:rgba(255,255,255,0.50);font-size:13px;margin:0">
+        Crio uma questão estilo ENEM, aguardo sua resposta e avalio com explicação completa.</p>
+    </div>
+
+  </div>
+</div>
+""", unsafe_allow_html=True)
+
 # ─── Aviso de rate limit ──────────────────────────────────────────────────────
 if st.session_state.get("rate_limit_until"):
     now = datetime.now()
