@@ -219,9 +219,8 @@ h1, h2, h3 { color: white !important; }
 
 # ─── Estado e chave ───────────────────────────────────────────────────────────
 init_session_state()
-st.session_state.api_key = load_api_key()  # DEBUG: recarrega sempre
-_k = st.session_state.api_key
-st.sidebar.caption(f"DEBUG key: {_k[:8]}...{_k[-4:] if len(_k) > 12 else '???'}")
+if not st.session_state.get("api_key"):
+    st.session_state.api_key = load_api_key()
 
 # ─── Sidebar ──────────────────────────────────────────────────────────────────
 with st.sidebar:
@@ -571,7 +570,11 @@ def send_question(question: str, file_data: dict = None, skip_ambiguity: bool = 
             st.session_state.retry_pending = {"question": question, "file": file_data}
             st.rerun()
         elif _is_auth:
-            st.session_state.error_msg = f"<div class='rate-limit-box'>🔑 DEBUG AUTH: {err_str[:500]}</div>"
+            st.session_state.error_msg = (
+                "<div class='rate-limit-box'>🛠️ <strong>Professor IA em manutenção.</strong><br>"
+                "O serviço está passando por uma atualização e deve voltar em breve.<br>"
+                "Tente novamente mais tarde ou amanhã. Suas dúvidas estarão aqui quando voltar! 📚</div>"
+            )
             st.rerun()
         else:
             st.session_state.error_msg = (
