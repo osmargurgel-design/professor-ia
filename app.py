@@ -570,11 +570,7 @@ def send_question(question: str, file_data: dict = None, skip_ambiguity: bool = 
             st.session_state.retry_pending = {"question": question, "file": file_data}
             st.rerun()
         elif _is_auth:
-            st.session_state.error_msg = (
-                "<div class='rate-limit-box'>😔 <strong>Serviço temporariamente indisponível.</strong><br>"
-                "O Professor IA não conseguiu se conectar agora. Tente novamente em alguns minutos.<br>"
-                "<small>Se o problema persistir, o serviço voltará automaticamente em breve.</small></div>"
-            )
+            st.session_state.error_msg = f"<div class='rate-limit-box'>🔑 DEBUG AUTH: {err_str[:500]}</div>"
             st.rerun()
         else:
             st.session_state.error_msg = (
