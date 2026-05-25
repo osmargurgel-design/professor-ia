@@ -343,6 +343,7 @@ def send_question(question: str, file_data: dict = None, skip_ambiguity: bool = 
     with st.chat_message("assistant", avatar="🎓"):
         stream_placeholder = st.empty()
 
+    st.session_state.processing = True
     try:
         history = get_history_for_gemini(st.session_state.messages[:-1])
 
@@ -413,11 +414,13 @@ def send_question(question: str, file_data: dict = None, skip_ambiguity: bool = 
 
         add_message("assistant", full_text, tip=tip, sources=sources)
         st.session_state.rate_limit_until = None
+        st.session_state.processing = False
         st.rerun()
 
     except Exception as e:
         st.session_state.messages.pop()
         stream_placeholder.empty()
+        st.session_state.processing = False
         err_str = str(e)
         if "429" in err_str or "quota" in err_str.lower() or "rate" in err_str.lower():
             retry_secs = extract_retry_seconds(err_str)
@@ -555,10 +558,31 @@ if st.session_state.get("retry_pending"):
 # ─── Área de input ────────────────────────────────────────────────────────────
 st.markdown("<br>", unsafe_allow_html=True)
 
+_processing = st.session_state.get("processing", False)
+
+if _processing:
+    col_status, col_parar = st.columns([4, 1])
+    with col_status:
+        st.markdown(
+            "<p style='color:rgba(165,180,252,0.75);font-size:13.5px;margin:8px 0 4px'>"
+            "⏳ Professor IA está digitando...</p>",
+            unsafe_allow_html=True,
+        )
+    with col_parar:
+        if st.button("⏹ Parar", use_container_width=True, key="btn_parar"):
+            # Remove a última mensagem do usuário (e eventual resposta parcial)
+            msgs = st.session_state.messages
+            if msgs and msgs[-1]["role"] == "assistant":
+                msgs.pop()
+            if msgs and msgs[-1]["role"] == "user":
+                msgs.pop()
+            st.session_state.processing = False
+            st.rerun()
+
 if st.session_state.messages:
     _, col_btn = st.columns([5, 1])
     with col_btn:
-        if st.button("🗑️ Limpar", use_container_width=True):
+        if st.button("🗑️ Limpar", use_container_width=True, disabled=_processing):
             st.session_state.messages = []
             st.session_state.rate_limit_until = None
             st.rerun()
@@ -600,9 +624,14 @@ with st.form("question_form", clear_on_submit=True):
         )
     with col2:
         st.markdown("<br>", unsafe_allow_html=True)
-        submitted = st.form_submit_button("➤ Enviar", use_container_width=True, type="primary")
+        submitted = st.form_submit_button(
+            "➤ Enviar" if not _processing else "⏳",
+            use_container_width=True,
+            type="primary",
+            disabled=_processing,
+        )
 
-if submitted and (user_input.strip() or st.session_state.get("attached_file")):
+if submitted and (user_input.strip() or st.session_state.get("attached_file")) and not _processing:
     file_data = st.session_state.pop("attached_file", None)
     if file_data:
         st.session_state.fu_key += 1

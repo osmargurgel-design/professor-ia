@@ -87,6 +87,7 @@ def init_session_state():
         "fu_key": 0,
         "pendente_sensivel": None,
         "pendente_ambiguo": None,
+        "processing": False,
         "retry_pending": None,
         "error_msg": None,
     }
