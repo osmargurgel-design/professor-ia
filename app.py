@@ -19,7 +19,7 @@ from utils import (
     checar_topico_sensivel,
 )
 
-VERSION = "25/05"
+VERSION = "25/05 · UI1"
 
 def load_api_key() -> str:
     try:
@@ -175,6 +175,45 @@ h1, h2, h3 { color: white !important; }
 ::-webkit-scrollbar { width: 5px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: rgba(99,102,241,0.3); border-radius: 3px; }
+
+/* ── Sidebar nav buttons ───────────────────────── */
+[data-testid="stSidebar"] .stButton { margin-bottom: 1px !important; }
+[data-testid="stSidebar"] .stButton button {
+    text-align: left !important;
+    justify-content: flex-start !important;
+    padding: 7px 14px !important;
+    border-radius: 10px !important;
+    font-size: 13.5px !important;
+    font-weight: 500 !important;
+    transition: all 0.18s !important;
+}
+[data-testid="stSidebar"] button[kind="secondary"] {
+    background: transparent !important;
+    border: none !important;
+    color: rgba(255,255,255,0.55) !important;
+}
+[data-testid="stSidebar"] button[kind="secondary"]:hover {
+    background: rgba(255,255,255,0.07) !important;
+    border: none !important;
+    color: rgba(255,255,255,0.9) !important;
+}
+[data-testid="stSidebar"] button[kind="primary"] {
+    background: rgba(99,102,241,0.18) !important;
+    border: 1px solid rgba(99,102,241,0.38) !important;
+    color: #a5b4fc !important;
+}
+[data-testid="stSidebar"] button[kind="primary"]:hover {
+    background: rgba(99,102,241,0.28) !important;
+    border-color: rgba(99,102,241,0.55) !important;
+}
+.sidebar-section {
+    margin: 16px 0 4px 2px !important;
+    color: rgba(255,255,255,0.28);
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+}
 </style>
 """, unsafe_allow_html=True)
 
@@ -185,45 +224,77 @@ if not st.session_state.get("api_key"):
 
 # ─── Sidebar ──────────────────────────────────────────────────────────────────
 with st.sidebar:
-    st.markdown("## 📚 Professor IA")
-    st.markdown("<small style='color:rgba(255,255,255,0.38)'>Ensino Médio Brasileiro</small>", unsafe_allow_html=True)
-    st.markdown("---")
-    st.markdown("### Escolha a matéria")
-    subject_names = [s["label"] for s in SUBJECTS]
-    selected_label = st.selectbox(
-        "Matéria:",
-        subject_names,
-        index=next((i for i, s in enumerate(SUBJECTS) if s["id"] == st.session_state.subject), 0),
-        label_visibility="collapsed",
+    st.markdown(
+        "<div style='text-align:center;padding:14px 0 10px'>"
+        "<span style='font-size:1.45rem;font-weight:800;"
+        "background:linear-gradient(90deg,#a5b4fc,#f9a8d4);"
+        "-webkit-background-clip:text;-webkit-text-fill-color:transparent'>"
+        "📚 Professor IA</span><br>"
+        "<small style='color:rgba(255,255,255,0.30);font-size:10.5px;letter-spacing:.6px'>"
+        "Ensino Médio Brasileiro</small></div>",
+        unsafe_allow_html=True,
     )
-    new_subject = next(s for s in SUBJECTS if s["label"] == selected_label)
-    if new_subject["id"] != st.session_state.subject:
-        st.session_state.subject = new_subject["id"]
-        st.session_state.messages = []
-        st.rerun()
 
-    st.markdown("---")
-    st.markdown("### 📖 Como usar")
-    st.markdown("""
-    <small>
-    1. Escolha a matéria acima<br>
-    2. Digite sua dúvida e clique <b>Enviar</b><br>
-    3. <b>Leia a explicação com atenção</b><br>
-    4. Escreva a resposta com <b>suas próprias palavras</b> — é assim que se aprende! ✍️
-    </small>
-    """, unsafe_allow_html=True)
+    st.markdown("<p class='sidebar-section'>📘 Matérias</p>", unsafe_allow_html=True)
+    for s in SUBJECTS:
+        if s["id"] == "diversos":
+            continue
+        active = st.session_state.subject == s["id"]
+        if st.button(
+            f"{s['emoji']}  {s['label']}",
+            key=f"sb_{s['id']}",
+            use_container_width=True,
+            type="primary" if active else "secondary",
+        ):
+            if not active:
+                st.session_state.subject = s["id"]
+                st.session_state.messages = []
+                st.rerun()
+
+    st.markdown("<p class='sidebar-section'>💬 Modo Livre</p>", unsafe_allow_html=True)
+    s_div = next(s for s in SUBJECTS if s["id"] == "diversos")
+    active_div = st.session_state.subject == "diversos"
+    if st.button(
+        f"{s_div['emoji']}  {s_div['label']}",
+        key="sb_diversos",
+        use_container_width=True,
+        type="primary" if active_div else "secondary",
+    ):
+        if not active_div:
+            st.session_state.subject = "diversos"
+            st.session_state.messages = []
+            st.rerun()
+
+    st.markdown("<p class='sidebar-section'>📖 Como usar</p>", unsafe_allow_html=True)
+    st.markdown(
+        "<small style='color:rgba(255,255,255,0.40);line-height:1.9'>"
+        "1. Escolha a matéria<br>"
+        "2. Digite sua dúvida e clique <b>Enviar</b><br>"
+        "3. Leia a explicação com atenção ✨<br>"
+        "4. Anote com <b>suas próprias palavras</b> ✍️"
+        "</small>",
+        unsafe_allow_html=True,
+    )
 
 # ─── Cabeçalho ────────────────────────────────────────────────────────────────
 current_subject = next(s for s in SUBJECTS if s["id"] == st.session_state.subject)
 
+_hour = datetime.now().hour
+_greeting = "Bom dia" if _hour < 12 else "Boa tarde" if _hour < 18 else "Boa noite"
+
 st.markdown(
     "<h1 style='text-align:center;background:linear-gradient(90deg,#a5b4fc,#f9a8d4,#7dd3fc);"
     "-webkit-background-clip:text;-webkit-text-fill-color:transparent;"
-    "font-size:2.2rem;font-weight:800;margin-bottom:4px'>📚 Professor IA</h1>",
+    "font-size:2.2rem;font-weight:800;margin-bottom:2px'>📚 Professor IA</h1>",
     unsafe_allow_html=True,
 )
 st.markdown(
-    f"<p style='color:rgba(255,255,255,0.42);font-size:13px;text-align:center;margin-top:-8px;margin-bottom:20px'>"
+    f"<p style='color:rgba(255,255,255,0.52);font-size:14px;text-align:center;margin:0 0 2px'>"
+    f"👋 {_greeting}! Qual é a sua dúvida hoje?</p>",
+    unsafe_allow_html=True,
+)
+st.markdown(
+    f"<p style='color:rgba(255,255,255,0.30);font-size:12px;text-align:center;margin:0 0 20px'>"
     f"{current_subject['emoji']} {current_subject['label']} · Ensino Médio Brasileiro</p>",
     unsafe_allow_html=True,
 )

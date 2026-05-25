@@ -8,6 +8,7 @@ SUBJECTS = [
     {"id": "quimica",     "label": "Química",          "emoji": "⚗️", "color": "#D35400"},
     {"id": "fisica",      "label": "Física",           "emoji": "⚡", "color": "#2C3E50"},
     {"id": "filosofia",   "label": "Filosofia",        "emoji": "🧠", "color": "#6C3483"},
+    {"id": "sociologia",  "label": "Sociologia",       "emoji": "🌐", "color": "#0D7377"},
     {"id": "ingles",      "label": "Inglês",           "emoji": "🇬🇧", "color": "#1A5276"},
     {"id": "diversos",    "label": "Assuntos Diversos","emoji": "💬", "color": "#5D6D7E"},
 ]
