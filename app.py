@@ -352,43 +352,13 @@ for msg in st.session_state.messages:
 
 # ─── Card de boas-vindas do Modo ENEM ────────────────────────────────────────
 if current_subject["id"] == "enem" and not st.session_state.messages:
-    st.markdown("""
-<div style="background:rgba(230,126,34,0.07);border:1px solid rgba(230,126,34,0.22);
-            border-radius:18px;padding:24px 26px;margin:4px 0 20px">
-
-  <div style="text-align:center;margin-bottom:20px">
-    <div style="font-size:2.4rem;margin-bottom:6px">🎯</div>
-    <p style="color:#F5CBA7;font-size:1.1rem;font-weight:700;margin:0 0 4px">Modo ENEM — Preparatório Inteligente</p>
-    <p style="color:rgba(255,255,255,0.40);font-size:13px;margin:0">
-      Diga o que precisa e eu me adapto. Escolha uma das opções abaixo:</p>
-  </div>
-
-  <div style="display:flex;flex-direction:column;gap:10px">
-
-    <div style="background:rgba(255,255,255,0.04);border-left:3px solid #E67E22;
-                border-radius:0 12px 12px 0;padding:12px 16px">
-      <p style="color:#F5CBA7;font-weight:600;margin:0 0 3px">📋 Cole uma questão (A / B / C / D / E)</p>
-      <p style="color:rgba(255,255,255,0.50);font-size:13px;margin:0">
-        Analiso cada alternativa, identifico a competência ENEM e explico o raciocínio completo.</p>
-    </div>
-
-    <div style="background:rgba(255,255,255,0.04);border-left:3px solid #E67E22;
-                border-radius:0 12px 12px 0;padding:12px 16px">
-      <p style="color:#F5CBA7;font-weight:600;margin:0 0 3px">🔍 Digite apenas um tema</p>
-      <p style="color:rgba(255,255,255,0.50);font-size:13px;margin:0">
-        Explico como o ENEM costuma cobrar aquele conteúdo e trago um exemplo de questão.</p>
-    </div>
-
-    <div style="background:rgba(255,255,255,0.04);border-left:3px solid #E67E22;
-                border-radius:0 12px 12px 0;padding:12px 16px">
-      <p style="color:#F5CBA7;font-weight:600;margin:0 0 3px">🏋️ "Quero treinar" ou "Me dê uma questão"</p>
-      <p style="color:rgba(255,255,255,0.50);font-size:13px;margin:0">
-        Crio uma questão estilo ENEM, aguardo sua resposta e avalio com explicação completa.</p>
-    </div>
-
-  </div>
-</div>
-""", unsafe_allow_html=True)
+    st.info(
+        "🎯 **Modo ENEM — Preparatório Inteligente**\n\n"
+        "Diga o que precisa e eu me adapto:\n\n"
+        "📋 **Cole uma questão** (A / B / C / D / E) — analiso cada alternativa, identifico a competência ENEM e explico o raciocínio completo.\n\n"
+        "🔍 **Digite apenas um tema** *(ex: Iluminismo, Fotossíntese)* — explico como o ENEM cobra aquele conteúdo e trago um exemplo de questão.\n\n"
+        '🏋️ **Peça para treinar** *(ex: "me dê uma questão")* — crio uma questão estilo ENEM, aguardo sua resposta e avalio com explicação completa.'
+    )
 
 # ─── Aviso de rate limit ──────────────────────────────────────────────────────
 if st.session_state.get("rate_limit_until"):
@@ -564,14 +534,34 @@ def send_question(question: str, file_data: dict = None, skip_ambiguity: bool = 
         stream_placeholder.empty()
         st.session_state.processing = False
         err_str = str(e)
-        if "429" in err_str or "quota" in err_str.lower() or "rate" in err_str.lower():
+        err_low = err_str.lower()
+
+        _is_quota = (
+            "429" in err_str
+            or "resource_exhausted" in err_low
+            or "quota" in err_low
+            or "rate_limit" in err_low
+            or "too_many_requests" in err_low
+            or "billing" in err_low
+            or "permission_denied" in err_low
+            or "403" in err_str
+        )
+        _is_server = "503" in err_str or "unavailable" in err_low
+        _is_auth = (
+            "unauthenticated" in err_low
+            or "api_key_invalid" in err_low
+            or "invalid_api_key" in err_low
+            or ("api_key" in err_low and not _is_quota)
+        )
+
+        if _is_quota:
             retry_secs = extract_retry_seconds(err_str)
-            eh_cota_diaria = any(p in err_str.lower() for p in ["quota", "exhausted", "resource_exhausted", "daily"])
+            eh_cota_diaria = any(p in err_low for p in ["quota", "exhausted", "resource_exhausted", "daily", "billing", "permission_denied"])
             if retry_secs <= 60 and eh_cota_diaria:
                 retry_secs = 43200  # 12 horas
             st.session_state.rate_limit_until = datetime.now() + timedelta(seconds=retry_secs)
-            st.rerun()  # o banner de rate limit já cuida do display formatado
-        elif "503" in err_str or "unavailable" in err_str.lower() or "alta demanda" in err_str.lower():
+            st.rerun()
+        elif _is_server:
             st.session_state.error_msg = (
                 "<div class='rate-limit-box'>🌐 <strong>Servidor ocupado no momento!</strong><br>"
                 "O Gemini está com alta demanda — é temporário.<br>"
@@ -579,8 +569,8 @@ def send_question(question: str, file_data: dict = None, skip_ambiguity: bool = 
             )
             st.session_state.retry_pending = {"question": question, "file": file_data}
             st.rerun()
-        elif "api_key" in err_str.lower() or "invalid" in err_str.lower():
-            st.error("🔑 Erro de autenticação. Contate o responsável pelo app.")
+        elif _is_auth:
+            st.warning("😔 O Professor IA está temporariamente indisponível. Tente novamente em alguns minutos ou volte mais tarde!")
         else:
             st.session_state.error_msg = (
                 "<div class='rate-limit-box'>⚠️ <strong>Falha na conexão.</strong><br>"
