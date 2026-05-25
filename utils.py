@@ -9,19 +9,25 @@ def _normalizar(texto: str) -> str:
     texto = texto.lower()
     return unicodedata.normalize("NFKD", texto).encode("ascii", "ignore").decode()
 
-# Tier 1 — termos vulgares: bloqueia imediatamente
-# Termos exatos: só batem como palavra isolada (não em "Cubas", "Paula", "parola")
-_TERMOS_VULGARES_EXATOS = [
-    "penis", "vagina", "vulva", "porra", "buceta", "pau",
-    "piroca", "xota", "xoxota", "rola", "cu", "anus",
-    "boquete", "chupeta", "transar", "foder", "fuder",
-    "gozar", "ejacular", "orgasmo", "punheta", "siririca", "sacanagem",
-    "sexo oral",
+# Tier 1A — Hard block: termos explicitamente vulgares sem contexto educacional possível.
+# Usa \b (word boundary) para não disparar em palavras maiores (ex: "cubas", "curitiba").
+_TERMOS_HARD_BLOCK_EXATOS = [
+    "porra", "buceta", "piroca", "xota", "xoxota",
+    "boquete", "punheta", "siririca", "sacanagem",
+    "foder", "fuder", "transar", "ejacular", "orgasmo",
+    "sexo oral", "cu", "chupeta",
 ]
-# Termos prefixo: basta começar com isso (masturb → masturbação, masturbar)
-_TERMOS_VULGARES_PREFIXO = [
-    "masturb",
-]
+# Prefixos que sempre bloqueiam (masturb → masturbação, masturbar, etc.)
+_TERMOS_HARD_BLOCK_PREFIXO = ["masturb"]
+
+# Tier 1B — Ambíguos: têm uso educacional legítimo; acionam portão de confirmação.
+# "pau"   → Pau Brasil (árvore nacional), Pica-Pau (pássaro)
+# "gozar" → "gozar de direitos" (sociologia/direito), "gozar férias"
+# "rola"  → presente de "rolar": "a bola rola" (física), "o dado rola" (matemática)
+_TERMOS_AMBIGUOS_EXATOS = ["pau", "gozar", "rola"]
+
+# Termos anatômicos (penis, vagina, vulva, anus) NÃO são filtrados aqui.
+# São tratados diretamente pelo Gemini via safety_settings + system prompt científico.
 
 # Tier 2 — frases que indicam interesse no ATO em si, não no conteúdo curricular
 # Usa regex para pegar combinações mais precisas e evitar falsos positivos
@@ -39,19 +45,29 @@ _PADROES_SENSIVEIS = [
 ]
 
 def checar_linguagem(pergunta: str) -> str | None:
+    """Bloqueia termos explicitamente vulgares sem contexto educacional possível."""
     normalizado = _normalizar(pergunta)
     _AVISO = (
         "🧑‍🏫 Essa pergunta usa uma linguagem que não é adequada para o ambiente escolar. "
         "O Professor IA trabalha com a linguagem científica do livro didático. "
         "Consulte seu material e reformule usando os termos corretos da matéria!"
     )
-    for termo in _TERMOS_VULGARES_EXATOS:
+    for termo in _TERMOS_HARD_BLOCK_EXATOS:
         if re.search(r'\b' + re.escape(_normalizar(termo)) + r'\b', normalizado):
             return _AVISO
-    for termo in _TERMOS_VULGARES_PREFIXO:
+    for termo in _TERMOS_HARD_BLOCK_PREFIXO:
         if re.search(r'\b' + re.escape(_normalizar(termo)), normalizado):
             return _AVISO
     return None
+
+
+def checar_ambiguidade(pergunta: str) -> bool:
+    """Retorna True se a pergunta contém termo ambíguo que pode ser educacional."""
+    normalizado = _normalizar(pergunta)
+    return any(
+        re.search(r'\b' + re.escape(_normalizar(t)) + r'\b', normalizado)
+        for t in _TERMOS_AMBIGUOS_EXATOS
+    )
 
 def checar_topico_sensivel(pergunta: str) -> bool:
     """Retorna True apenas quando a pergunta busca explicitamente o ATO reprodutivo,
@@ -70,6 +86,7 @@ def init_session_state():
         "attached_file": None,
         "fu_key": 0,
         "pendente_sensivel": None,
+        "pendente_ambiguo": None,
         "retry_pending": None,
         "error_msg": None,
     }

@@ -15,6 +15,7 @@ from utils import (
     get_history_for_gemini,
     init_session_state,
     checar_linguagem,
+    checar_ambiguidade,
     checar_topico_sensivel,
 )
 
@@ -301,7 +302,7 @@ SAFETY_SETTINGS = [
 ]
 
 # ─── Função de envio ──────────────────────────────────────────────────────────
-def send_question(question: str, file_data: dict = None):
+def send_question(question: str, file_data: dict = None, skip_ambiguity: bool = False):
     st.session_state.retry_pending = None  # limpa retry anterior ao enviar nova pergunta
     if st.session_state.get("rate_limit_until") and datetime.now() < st.session_state.rate_limit_until:
         st.warning("⏳ Ainda em espera. Aguarde o timer acima zerar.")
@@ -314,6 +315,12 @@ def send_question(question: str, file_data: dict = None):
             with st.chat_message("assistant", avatar="🎓"):
                 st.markdown(f"<div class='tip-box'>🧑‍🏫 {aviso}</div>", unsafe_allow_html=True)
             return
+
+    # Tier 1.5 — termo ambíguo: pode ser educacional, pede confirmação antes de bloquear
+    if not skip_ambiguity and question and checar_ambiguidade(question):
+        st.session_state.pendente_ambiguo = {"pergunta": question, "arquivo": file_data}
+        st.rerun()
+        return
 
     # Tier 2 — tópico sensível
     if question and checar_topico_sensivel(question):
@@ -493,6 +500,35 @@ if st.session_state.get("pendente_sensivel"):
                     "Se tiver outras dúvidas de qualquer matéria, pode perguntar aqui!"
                 )
             add_message("assistant", msg)
+            st.rerun()
+
+# ─── Portão de ambiguidade (termo com duplo sentido) ─────────────────────────
+if st.session_state.get("pendente_ambiguo"):
+    pend = st.session_state.pendente_ambiguo
+    st.markdown(
+        """<div class='tip-box'>🤔 <strong>Professor IA — Confirmação de tema</strong><br><br>
+        Sua pergunta contém um termo que pode ter significados diferentes.<br><br>
+        <strong>Você está perguntando sobre um assunto do currículo escolar?</strong><br>
+        <small>Exemplos: a árvore <em>Pau Brasil</em>, o pássaro <em>Pica-Pau</em>,
+        o direito de <em>gozar</em> férias, uma bola que <em>rola</em>...</small><br><br>
+        Se for um tema de estudo, confirme e o Professor IA vai interpretar no contexto educacional!</div>""",
+        unsafe_allow_html=True,
+    )
+    col_sim, col_nao = st.columns(2)
+    with col_sim:
+        if st.button("✅ Sim, é um tema escolar", use_container_width=True, type="primary", key="amb_sim"):
+            q = pend["pergunta"]
+            f = pend.get("arquivo")
+            st.session_state.pendente_ambiguo = None
+            send_question(q, f, skip_ambiguity=True)
+    with col_nao:
+        if st.button("❌ Não é tema escolar", use_container_width=True, key="amb_nao"):
+            st.session_state.pendente_ambiguo = None
+            add_message(
+                "assistant",
+                "Tudo bem! 😊 Se tiver dúvidas sobre o conteúdo escolar, "
+                "reformule a pergunta usando os termos corretos e estarei aqui para ajudar!",
+            )
             st.rerun()
 
 # ─── Erro + botão de reenvio ──────────────────────────────────────────────────
