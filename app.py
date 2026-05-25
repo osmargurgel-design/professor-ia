@@ -389,6 +389,7 @@ def send_question(question: str, file_data: dict = None, skip_ambiguity: bool = 
                 system_instruction=system_instruction,
                 safety_settings=SAFETY_SETTINGS,
                 max_output_tokens=2500,
+                thinking_config=types.ThinkingConfig(thinking_budget=0),
             ),
         )
 
@@ -397,8 +398,18 @@ def send_question(question: str, file_data: dict = None, skip_ambiguity: bool = 
             if chunk.text:
                 full_text += chunk.text
                 stream_placeholder.write(full_text + "▌")
-        if full_text:
-            stream_placeholder.write(full_text)
+
+        if not full_text:
+            st.session_state.messages.pop()
+            stream_placeholder.markdown(
+                "<div class='rate-limit-box'>🛡️ A resposta foi bloqueada pelos filtros de segurança. "
+                "Reformule a pergunta com linguagem acadêmica e tente novamente.</div>",
+                unsafe_allow_html=True,
+            )
+            st.session_state.processing = False
+            return
+
+        stream_placeholder.write(full_text)
 
         tip = None
         tip_match = re.search(r"\[DICA\](.*?)(\[/DICA\]|$)", full_text, re.DOTALL)
