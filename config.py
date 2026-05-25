@@ -1,14 +1,15 @@
 # ─── Matérias disponíveis ─────────────────────────────────────────────────────
 SUBJECTS = [
-    {"id": "historia",    "label": "História",    "emoji": "🏛️", "color": "#C0392B"},
-    {"id": "geografia",   "label": "Geografia",   "emoji": "🌍", "color": "#27AE60"},
-    {"id": "portugues",   "label": "Português",   "emoji": "📖", "color": "#2980B9"},
-    {"id": "matematica",  "label": "Matemática",  "emoji": "📐", "color": "#8E44AD"},
-    {"id": "biologia",    "label": "Biologia",    "emoji": "🧬", "color": "#16A085"},
-    {"id": "quimica",     "label": "Química",     "emoji": "⚗️", "color": "#D35400"},
-    {"id": "fisica",      "label": "Física",      "emoji": "⚡", "color": "#2C3E50"},
-    {"id": "filosofia",   "label": "Filosofia",   "emoji": "🧠", "color": "#6C3483"},
-    {"id": "ingles",      "label": "Inglês",      "emoji": "🇬🇧", "color": "#1A5276"},
+    {"id": "portugues",   "label": "Português",        "emoji": "📖", "color": "#2980B9"},
+    {"id": "matematica",  "label": "Matemática",       "emoji": "📐", "color": "#8E44AD"},
+    {"id": "historia",    "label": "História",         "emoji": "🏛️", "color": "#C0392B"},
+    {"id": "geografia",   "label": "Geografia",        "emoji": "🌍", "color": "#27AE60"},
+    {"id": "biologia",    "label": "Biologia",         "emoji": "🧬", "color": "#16A085"},
+    {"id": "quimica",     "label": "Química",          "emoji": "⚗️", "color": "#D35400"},
+    {"id": "fisica",      "label": "Física",           "emoji": "⚡", "color": "#2C3E50"},
+    {"id": "filosofia",   "label": "Filosofia",        "emoji": "🧠", "color": "#6C3483"},
+    {"id": "ingles",      "label": "Inglês",           "emoji": "🇬🇧", "color": "#1A5276"},
+    {"id": "diversos",    "label": "Assuntos Diversos","emoji": "💬", "color": "#5D6D7E"},
 ]
 
 # ─── Prompt do sistema ────────────────────────────────────────────────────────

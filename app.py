@@ -355,6 +355,14 @@ def send_question(question: str, file_data: dict = None):
         user_parts.append({"text": text_prompt})
 
         system_instruction = SYSTEM_PROMPT_TEMPLATE.format(subject=current_subject["label"])
+        if current_subject["id"] == "diversos":
+            system_instruction += (
+                "\n\n## Modo: Assuntos Diversos\n"
+                "O aluno não selecionou uma matéria específica. Você pode responder perguntas "
+                "de qualquer disciplina do ensino médio ou dúvidas gerais do dia a dia escolar. "
+                "Identifique a área do conhecimento da pergunta e responda como especialista nela. "
+                "Mantenha sempre o foco educacional e as regras de segurança para menores."
+            )
         if current_subject["id"] == "ingles":
             system_instruction += (
                 "\n\n## Matéria: Inglês — instruções específicas:\n"

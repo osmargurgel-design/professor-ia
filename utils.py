@@ -55,7 +55,7 @@ def checar_topico_sensivel(pergunta: str) -> bool:
 def init_session_state():
     defaults = {
         "messages": [],
-        "subject": "historia",
+        "subject": "portugues",
         "api_key": "",
         "rate_limit_until": None,
         "attached_file": None,
