@@ -7,7 +7,7 @@ import os
 import base64
 from datetime import datetime, timedelta, timezone
 from dotenv import load_dotenv
-from config import SUBJECTS, SYSTEM_PROMPT_TEMPLATE, SYSTEM_PROMPT_ENEM
+from config import SUBJECTS, SYSTEM_PROMPT_TEMPLATE, SYSTEM_PROMPT_ENEM, SYSTEM_PROMPT_REDACAO
 from utils import (
     format_rate_limit_message,
     extract_retry_seconds,
@@ -19,7 +19,7 @@ from utils import (
     checar_topico_sensivel,
 )
 
-VERSION = "25/05 · UI2"
+VERSION = "26/05 · Redação ENEM"
 
 def load_api_key() -> str:
     try:
@@ -237,7 +237,7 @@ with st.sidebar:
 
     st.markdown("<p class='sidebar-section'>📘 Matérias</p>", unsafe_allow_html=True)
     for s in SUBJECTS:
-        if s["id"] in ("diversos", "enem"):
+        if s["id"] in ("diversos", "enem", "redacao"):
             continue
         active = st.session_state.subject == s["id"]
         if st.button(
@@ -252,18 +252,19 @@ with st.sidebar:
                 st.rerun()
 
     st.markdown("<p class='sidebar-section'>🤖 IA & ENEM</p>", unsafe_allow_html=True)
-    s_enem = next(s for s in SUBJECTS if s["id"] == "enem")
-    active_enem = st.session_state.subject == "enem"
-    if st.button(
-        f"{s_enem['emoji']}  {s_enem['label']}",
-        key="sb_enem",
-        use_container_width=True,
-        type="primary" if active_enem else "secondary",
-    ):
-        if not active_enem:
-            st.session_state.subject = "enem"
-            st.session_state.messages = []
-            st.rerun()
+    for _sid in ("enem", "redacao"):
+        _s = next(s for s in SUBJECTS if s["id"] == _sid)
+        _active = st.session_state.subject == _sid
+        if st.button(
+            f"{_s['emoji']}  {_s['label']}",
+            key=f"sb_{_sid}",
+            use_container_width=True,
+            type="primary" if _active else "secondary",
+        ):
+            if not _active:
+                st.session_state.subject = _sid
+                st.session_state.messages = []
+                st.rerun()
 
     st.markdown("<p class='sidebar-section'>💬 Modo Livre</p>", unsafe_allow_html=True)
     s_div = next(s for s in SUBJECTS if s["id"] == "diversos")
@@ -350,7 +351,7 @@ for msg in st.session_state.messages:
                 unsafe_allow_html=True,
             )
 
-# ─── Card de boas-vindas do Modo ENEM ────────────────────────────────────────
+# ─── Cards de boas-vindas ─────────────────────────────────────────────────────
 if current_subject["id"] == "enem" and not st.session_state.messages:
     st.info(
         "🎯 **Modo ENEM — Preparatório Inteligente**\n\n"
@@ -358,6 +359,16 @@ if current_subject["id"] == "enem" and not st.session_state.messages:
         "📋 **Cole uma questão** (A / B / C / D / E) — analiso cada alternativa, identifico a competência ENEM e explico o raciocínio completo.\n\n"
         "🔍 **Digite apenas um tema** *(ex: Iluminismo, Fotossíntese)* — explico como o ENEM cobra aquele conteúdo e trago um exemplo de questão.\n\n"
         '🏋️ **Peça para treinar** *(ex: "me dê uma questão")* — crio uma questão estilo ENEM, aguardo sua resposta e avalio com explicação completa.'
+    )
+
+if current_subject["id"] == "redacao" and not st.session_state.messages:
+    st.info(
+        "✍️ **Redação ENEM — Avaliação e Treino**\n\n"
+        "Diga o que precisa e eu me adapto:\n\n"
+        "📝 **Cole sua redação completa** — avalio pelas 5 competências ENEM (nota estimada + o que melhorar em cada uma).\n\n"
+        "💡 **Digite só o tema** *(ex: Desafios da saúde mental no Brasil)* — sugiro estrutura, argumentos e proposta de intervenção.\n\n"
+        "❓ **Tire dúvidas** *(ex: \"como melhorar minha proposta de intervenção?\")* — explico a competência com exemplos práticos.\n\n"
+        "📸 **Foto da redação** — tire uma foto da sua redação manuscrita e envie pelo botão de anexo."
     )
 
 # ─── Aviso de rate limit ──────────────────────────────────────────────────────
@@ -405,6 +416,21 @@ def send_question(question: str, file_data: dict = None, skip_ambiguity: bool = 
     if st.session_state.get("rate_limit_until") and datetime.now() < st.session_state.rate_limit_until:
         st.warning("⏳ Ainda em espera. Aguarde o timer acima zerar.")
         return
+
+    # Redação — bloquear PDF e limitar tamanho
+    if current_subject["id"] == "redacao":
+        if file_data and file_data["type"] == "application/pdf":
+            with st.chat_message("assistant", avatar="🎓"):
+                st.info("📄 No Modo Redação use **texto colado** ou **foto** da redação manuscrita. PDFs não são aceitos aqui.")
+            return
+        if question and len(question) > 2500:
+            with st.chat_message("assistant", avatar="🎓"):
+                st.warning(
+                    f"✍️ Texto muito longo! Uma redação ENEM tem no máximo **30 linhas** (~1800 caracteres). "
+                    f"Você colou **{len(question)} caracteres**.\n\n"
+                    "Cole apenas o texto da sua redação, sem enunciado ou rascunhos."
+                )
+            return
 
     # Tier 1 — linguagem vulgar
     if question:
@@ -462,6 +488,8 @@ def send_question(question: str, file_data: dict = None, skip_ambiguity: bool = 
 
         if current_subject["id"] == "enem":
             system_instruction = SYSTEM_PROMPT_ENEM
+        elif current_subject["id"] == "redacao":
+            system_instruction = SYSTEM_PROMPT_REDACAO
         else:
             system_instruction = SYSTEM_PROMPT_TEMPLATE.format(subject=current_subject["label"])
             if current_subject["id"] == "diversos":
