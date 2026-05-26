@@ -760,10 +760,13 @@ if st.session_state.messages:
             st.session_state.rate_limit_until = None
             st.rerun()
 
-with st.expander("📎 Anexar foto do caderno ou PDF (opcional)"):
+_is_redacao = current_subject["id"] == "redacao"
+_attach_label = "📸 Anexar foto da redação manuscrita (opcional)" if _is_redacao else "📎 Anexar foto do caderno ou PDF (opcional)"
+_attach_types = ["jpg", "jpeg", "png", "webp"] if _is_redacao else ["jpg", "jpeg", "png", "webp", "pdf"]
+with st.expander(_attach_label):
     uploaded_file = st.file_uploader(
-        "Selecione imagem ou PDF",
-        type=["jpg", "jpeg", "png", "webp", "pdf"],
+        "Selecione imagem",
+        type=_attach_types,
         key=f"fu_{st.session_state.fu_key}",
         label_visibility="collapsed",
     )
