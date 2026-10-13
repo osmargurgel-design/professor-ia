@@ -1,4 +1,5 @@
 import streamlit as st
+import streamlit.components.v1 as components
 from google import genai
 from google.genai import types
 import time
@@ -36,6 +37,18 @@ st.set_page_config(
     layout="centered",
     initial_sidebar_state="expanded",
 )
+
+# O Streamlit marca a página como inglês (lang="en"); o tradutor do navegador então
+# "traduz" palavras em português como se fossem inglês (ex: "Testes" → "Testículos").
+# Marca a página como pt-BR e desliga a tradução automática.
+_PAGINA_PT_BR = (
+    "<script>const h = window.parent.document.documentElement;"
+    "h.lang = 'pt-BR'; h.setAttribute('translate', 'no'); h.classList.add('notranslate');</script>"
+)
+if hasattr(st, "iframe"):  # Streamlit novo; components.html foi descontinuado
+    st.iframe(_PAGINA_PT_BR, height=1)
+else:
+    components.html(_PAGINA_PT_BR, height=0)
 
 st.markdown("""
 <style>
