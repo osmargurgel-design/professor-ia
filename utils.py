@@ -3,6 +3,15 @@ import unicodedata
 import streamlit as st
 
 
+# ─── Cliente Gemini reaproveitado ─────────────────────────────────────────────
+@st.cache_resource(show_spinner=False)
+def obter_cliente_gemini(api_key: str):
+    """Cria o cliente do Gemini uma única vez e reaproveita nos próximos cliques.
+    Recriá-lo a cada interação levava de 3 a 8 segundos."""
+    from google import genai
+    return genai.Client(api_key=api_key)
+
+
 # ─── Filtros de segurança ─────────────────────────────────────────────────────
 
 def _normalizar(texto: str) -> str:

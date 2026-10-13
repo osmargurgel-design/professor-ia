@@ -17,6 +17,7 @@ from utils import (
     checar_linguagem,
     checar_ambiguidade,
     checar_topico_sensivel,
+    obter_cliente_gemini,
 )
 
 VERSION = "26/05 · Redação ENEM"
@@ -321,7 +322,7 @@ if not st.session_state.get("api_key"):
     st.stop()
 
 try:
-    client = genai.Client(api_key=st.session_state.api_key)
+    client = obter_cliente_gemini(st.session_state.api_key)
 except Exception as e:
     st.error(f"Erro ao configurar a API: {e}")
     st.stop()
