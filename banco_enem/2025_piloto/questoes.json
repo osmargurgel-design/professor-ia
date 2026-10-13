@@ -1,0 +1,948 @@
+{
+  "versao_esquema": "1.0",
+  "titulo": "Piloto Enem 2025 - 12 questões",
+  "quantidade": 12,
+  "questoes": [
+    {
+      "id": "enem_2025_regular_d1_cd1_q011",
+      "ano": 2025,
+      "aplicacao": "regular",
+      "dia": 1,
+      "caderno": 1,
+      "cor": "azul",
+      "numero_original": 11,
+      "area": "Linguagens",
+      "idioma": null,
+      "conteudo": [
+        {
+          "tipo": "texto",
+          "texto": "— Vejo, disse ele com algum acanhamento, que o doutor não é nenhum pé-rapado, mas nunca é bom facilitar... Minha filha Nocência fez 18 anos pelo Natal, e é rapariga que pela feição parece moça de cidade, muito ariscazinha de modos, mas bonita e boa deveras... Coitada, foi criada sem mãe, e aqui nestes fundões. [...]\n\n— Ora muito que bem, continuou Pereira caindo aos poucos na habitual garrulice, quando vi a menina tomar corpo, tratei logo de casá-la.\n\n— Ah! é casada? perguntou Cirino.\n\n— Isto é, é e não é. A coisa está apalavrada. Por aqui costuma labutar no costeio do gado para São Paulo um homem de mão-cheia, que talvez o sr. conheça... o Manecão Doca...\n\n— Não, respondeu Cirino abanando a cabeça.\n\n— Pois isso é um homem às direitas, desempenado e trabucador como ele só... fura estes sertões todos e vem tangendo pontes de gado que metem pasmo. Também dizem que tem bichado muito e ajuntado cobre grosso, o que é possível, porque não é gastador nem dado a mulheres. Uma feita que estava aqui de pousada... olhe, mesmo neste lugar onde estava mecê inda agorinha, falei-lhe em casamento... isto é, dei-lhe uns toques... porque os pais devem tomar isso a si para bem de suas famílias; não acha?\n\n— Boa dúvida, aprovou Cirino, dou-lhe toda a razão; era do seu dever.\n\nTAUNAY, A. d’E. Inocência. Disponível em: www.dominiopublico.gov.br. Acesso em: 29 fev. 2024.\n\nNesse trecho, ao se referir à sua filha, o pai de Inocência reproduz os ideais românticos, presentes na"
+        }
+      ],
+      "alternativas": [
+        {
+          "letra": "A",
+          "conteudo": [
+            {
+              "tipo": "texto",
+              "texto": "valorização do ambiente rural na formação moral da mulher."
+            }
+          ]
+        },
+        {
+          "letra": "B",
+          "conteudo": [
+            {
+              "tipo": "texto",
+              "texto": "figura decorativa da mulher ante o protagonismo masculino."
+            }
+          ]
+        },
+        {
+          "letra": "C",
+          "conteudo": [
+            {
+              "tipo": "texto",
+              "texto": "equivalência de origem social para a harmonia do casal."
+            }
+          ]
+        },
+        {
+          "letra": "D",
+          "conteudo": [
+            {
+              "tipo": "texto",
+              "texto": "importância do dote como condição para o casamento."
+            }
+          ]
+        },
+        {
+          "letra": "E",
+          "conteudo": [
+            {
+              "tipo": "texto",
+              "texto": "aura de mistério sobre a identidade da jovem."
+            }
+          ]
+        }
+      ],
+      "fonte": {
+        "instituicao": "Inep",
+        "pagina_pdf": 8,
+        "url_prova": "https://download.inep.gov.br/enem/provas_e_gabaritos/2025_PV_impresso_D1_CD1.pdf"
+      }
+    },
+    {
+      "id": "enem_2025_regular_d1_cd1_q012",
+      "ano": 2025,
+      "aplicacao": "regular",
+      "dia": 1,
+      "caderno": 1,
+      "cor": "azul",
+      "numero_original": 12,
+      "area": "Linguagens",
+      "idioma": null,
+      "conteudo": [
+        {
+          "tipo": "texto",
+          "texto": "O Ministério do Esporte no Brasil lançou o programa Maré Inclusiva, em 2024, ano dos Jogos Paralímpicos de Paris. Esse programa visa ampliar as oportunidades para pessoas com deficiência que desejam praticar o surf. O parasurf é a prática do surf adaptada para permitir que pessoas com deficiência pratiquem o esporte em todas as suas categorias, modalidades e manifestações. Para a Secretaria Nacional do Paradesporto, a iniciativa é mais do que um programa de esporte, é uma iniciativa que busca transformar vidas e promover a inclusão por meio do parasurf, criando um legado de igualdade e respeito. Disponível em: www.gov.br/esporte. Acesso em: 6 set. 2024 (adaptado). De acordo com esse texto, o programa voltado ao estímulo da prática do parasurf evidencia a"
+        }
+      ],
+      "alternativas": [
+        {
+          "letra": "A",
+          "conteudo": [
+            {
+              "tipo": "texto",
+              "texto": "adesão de diferentes países a programas inclusivos."
+            }
+          ]
+        },
+        {
+          "letra": "B",
+          "conteudo": [
+            {
+              "tipo": "texto",
+              "texto": "preocupação política em atender a demandas paralímpicas."
+            }
+          ]
+        },
+        {
+          "letra": "C",
+          "conteudo": [
+            {
+              "tipo": "texto",
+              "texto": "importância de uma política pública esportiva para a inclusão."
+            }
+          ]
+        },
+        {
+          "letra": "D",
+          "conteudo": [
+            {
+              "tipo": "texto",
+              "texto": "eficiência das iniciativas de inclusão em megaeventos esportivos."
+            }
+          ]
+        },
+        {
+          "letra": "E",
+          "conteudo": [
+            {
+              "tipo": "texto",
+              "texto": "escassez de investimento em práticas corporais de aventura na natureza."
+            }
+          ]
+        }
+      ],
+      "fonte": {
+        "instituicao": "Inep",
+        "pagina_pdf": 8,
+        "url_prova": "https://download.inep.gov.br/enem/provas_e_gabaritos/2025_PV_impresso_D1_CD1.pdf"
+      }
+    },
+    {
+      "id": "enem_2025_regular_d1_cd1_q013",
+      "ano": 2025,
+      "aplicacao": "regular",
+      "dia": 1,
+      "caderno": 1,
+      "cor": "azul",
+      "numero_original": 13,
+      "area": "Linguagens",
+      "idioma": null,
+      "conteudo": [
+        {
+          "tipo": "texto",
+          "texto": "Art. 26-A. Nos estabelecimentos de ensino fundamental e médio, oficiais e particulares, torna-se obrigatório o ensino sobre História e Cultura Afro-Brasileira.\n\n§ 1º O conteúdo programático a que se refere o caput deste artigo incluirá o estudo da História da África e dos Africanos, a luta dos negros no Brasil, a cultura negra brasileira e o negro na formação da sociedade nacional, resgatando a contribuição do povo negro nas áreas social, econômica e política pertinentes à História do Brasil.\n\n§ 2º Os conteúdos referentes à História e Cultura Afro-Brasileira serão ministrados no âmbito de todo o currículo escolar, em especial nas áreas de Educação Artística e de Literatura e História Brasileiras.\n\nBRASIL. Lei n. 10 639/2003. Disponível em: www.gov.br/planalto. Acesso em: 5 maio 2024.\n\nO emprego da norma-padrão é justificado nesse texto"
+        }
+      ],
+      "alternativas": [
+        {
+          "letra": "A",
+          "conteudo": [
+            {
+              "tipo": "texto",
+              "texto": "pela especialização de seu público-alvo."
+            }
+          ]
+        },
+        {
+          "letra": "B",
+          "conteudo": [
+            {
+              "tipo": "texto",
+              "texto": "pela relevância cultural de seu conteúdo."
+            }
+          ]
+        },
+        {
+          "letra": "C",
+          "conteudo": [
+            {
+              "tipo": "texto",
+              "texto": "pelos contextos pedagógicos em que circula."
+            }
+          ]
+        },
+        {
+          "letra": "D",
+          "conteudo": [
+            {
+              "tipo": "texto",
+              "texto": "pela importância para os grupos étnico-raciais."
+            }
+          ]
+        },
+        {
+          "letra": "E",
+          "conteudo": [
+            {
+              "tipo": "texto",
+              "texto": "pelas características do gênero a que pertence."
+            }
+          ]
+        }
+      ],
+      "fonte": {
+        "instituicao": "Inep",
+        "pagina_pdf": 8,
+        "url_prova": "https://download.inep.gov.br/enem/provas_e_gabaritos/2025_PV_impresso_D1_CD1.pdf"
+      }
+    },
+    {
+      "id": "enem_2025_regular_d1_cd1_q046",
+      "ano": 2025,
+      "aplicacao": "regular",
+      "dia": 1,
+      "caderno": 1,
+      "cor": "azul",
+      "numero_original": 46,
+      "area": "Ciências Humanas",
+      "idioma": null,
+      "conteudo": [
+        {
+          "tipo": "texto",
+          "texto": "Macedônia do Norte Acordo entra em vigor e país muda oficialmente de nome Entrou em vigor, em 2019, o acordo que determina a mudança de nome da Macedônia para Macedônia do Norte. A troca põe fim — ao menos por enquanto — no impasse entre essa antiga república da Iugoslávia e a vizinha Grécia. O governo grego se opunha ao uso do nome Macedônia pelo novo país vizinho porque a Grécia tem uma província no norte com o mesmo nome. Por causa desse impasse, a Grécia bloqueou as negociações de adesão de seu vizinho à União Europeia. Depois de negociações, as duas partes chegaram a um acordo. Disponível em: https://g1.globo.com. Acesso em: 7 nov. 2021 (adaptado). Para o país originado da antiga Iugoslávia, a mudança de nome é uma estratégia política para"
+        }
+      ],
+      "alternativas": [
+        {
+          "letra": "A",
+          "conteudo": [
+            {
+              "tipo": "texto",
+              "texto": "criar a moeda própria."
+            }
+          ]
+        },
+        {
+          "letra": "B",
+          "conteudo": [
+            {
+              "tipo": "texto",
+              "texto": "proteger a cultura local."
+            }
+          ]
+        },
+        {
+          "letra": "C",
+          "conteudo": [
+            {
+              "tipo": "texto",
+              "texto": "subjugar a minoria étnica."
+            }
+          ]
+        },
+        {
+          "letra": "D",
+          "conteudo": [
+            {
+              "tipo": "texto",
+              "texto": "expandir o território nacional."
+            }
+          ]
+        },
+        {
+          "letra": "E",
+          "conteudo": [
+            {
+              "tipo": "texto",
+              "texto": "intensificar a integração regional."
+            }
+          ]
+        }
+      ],
+      "fonte": {
+        "instituicao": "Inep",
+        "pagina_pdf": 22,
+        "url_prova": "https://download.inep.gov.br/enem/provas_e_gabaritos/2025_PV_impresso_D1_CD1.pdf"
+      }
+    },
+    {
+      "id": "enem_2025_regular_d1_cd1_q047",
+      "ano": 2025,
+      "aplicacao": "regular",
+      "dia": 1,
+      "caderno": 1,
+      "cor": "azul",
+      "numero_original": 47,
+      "area": "Ciências Humanas",
+      "idioma": null,
+      "conteudo": [
+        {
+          "tipo": "texto",
+          "texto": "Concentração de CO2 por queimadas entre África e Brasil em 30 de agosto de 2019"
+        },
+        {
+          "tipo": "imagem",
+          "arquivo": "imagens/q47_mapa.png",
+          "descricao": "Mapa de concentração de CO₂ entre África e Brasil; inclui escala em PPbV.",
+          "largura_px": 772,
+          "altura_px": 438,
+          "recorte_pdf_pt": [
+            159,
+            346,
+            414,
+            489
+          ]
+        },
+        {
+          "tipo": "texto",
+          "texto": "Disponível em: https://noticias.uol.com.br. Acesso em: 10 out. 2019 (adaptado). A dispersão espacial do problema ambiental representado na imagem de satélite é explicada pela seguinte característica geográfica:"
+        }
+      ],
+      "alternativas": [
+        {
+          "letra": "A",
+          "conteudo": [
+            {
+              "tipo": "texto",
+              "texto": "Amplitude das temperaturas médias."
+            }
+          ]
+        },
+        {
+          "letra": "B",
+          "conteudo": [
+            {
+              "tipo": "texto",
+              "texto": "Homogeneidade da insolação anual."
+            }
+          ]
+        },
+        {
+          "letra": "C",
+          "conteudo": [
+            {
+              "tipo": "texto",
+              "texto": "Ocorrência de chuvas de relevo."
+            }
+          ]
+        },
+        {
+          "letra": "D",
+          "conteudo": [
+            {
+              "tipo": "texto",
+              "texto": "Circulação de massas de ar."
+            }
+          ]
+        },
+        {
+          "letra": "E",
+          "conteudo": [
+            {
+              "tipo": "texto",
+              "texto": "Ausência de frentes frias."
+            }
+          ]
+        }
+      ],
+      "fonte": {
+        "instituicao": "Inep",
+        "pagina_pdf": 22,
+        "url_prova": "https://download.inep.gov.br/enem/provas_e_gabaritos/2025_PV_impresso_D1_CD1.pdf"
+      }
+    },
+    {
+      "id": "enem_2025_regular_d1_cd1_q048",
+      "ano": 2025,
+      "aplicacao": "regular",
+      "dia": 1,
+      "caderno": 1,
+      "cor": "azul",
+      "numero_original": 48,
+      "area": "Ciências Humanas",
+      "idioma": null,
+      "conteudo": [
+        {
+          "tipo": "texto",
+          "texto": "A credulidade dos ouvintes aumenta o descaramento do narrador, e o descaramento deste conquista-lhes a credulidade. A eloquência, quando levada a seu patamar mais alto, deixa pouco lugar à razão ou à reflexão, mas, dirigindo-se inteiramente à imaginação e aos afetos, cativa os ouvintes condescendentes e subjuga-lhes o entendimento. HUME, D. Uma investigação sobre o entendimento humano e sobre os princípios da moral. São Paulo: Edunesp, 2003. No contexto do século XVIII, o autor propõe uma reflexão radical acerca da arte da eloquência, restringindo-a ao"
+        }
+      ],
+      "alternativas": [
+        {
+          "letra": "A",
+          "conteudo": [
+            {
+              "tipo": "texto",
+              "texto": "sistema de crenças, conforme a proposta kantiana de objetividade do conhecimento."
+            }
+          ]
+        },
+        {
+          "letra": "B",
+          "conteudo": [
+            {
+              "tipo": "texto",
+              "texto": "campo dos absolutos, semelhante ao entendimento medieval dos Universais."
+            }
+          ]
+        },
+        {
+          "letra": "C",
+          "conteudo": [
+            {
+              "tipo": "texto",
+              "texto": "domínio da lógica, consoante a compreensão aristotélica nos Analíticos."
+            }
+          ]
+        },
+        {
+          "letra": "D",
+          "conteudo": [
+            {
+              "tipo": "texto",
+              "texto": "paradigma da racionalidade, alinhado ao modelo cartesiano de método."
+            }
+          ]
+        },
+        {
+          "letra": "E",
+          "conteudo": [
+            {
+              "tipo": "texto",
+              "texto": "âmbito da persuasão, análogo às críticas platônicas aos sofistas."
+            }
+          ]
+        }
+      ],
+      "fonte": {
+        "instituicao": "Inep",
+        "pagina_pdf": 22,
+        "url_prova": "https://download.inep.gov.br/enem/provas_e_gabaritos/2025_PV_impresso_D1_CD1.pdf"
+      }
+    },
+    {
+      "id": "enem_2025_regular_d2_cd7_q091",
+      "ano": 2025,
+      "aplicacao": "regular",
+      "dia": 2,
+      "caderno": 7,
+      "cor": "azul",
+      "numero_original": 91,
+      "area": "Ciências da Natureza",
+      "idioma": null,
+      "conteudo": [
+        {
+          "tipo": "texto",
+          "texto": "A filtração em carvão é uma das mais antigas formas de purificação de água. O carvão ativado, diferentemente do carvão comum, é útil para ser empregado na remoção de material orgânico, cloro e outros contaminantes. Essa capacidade decorre de suas propriedades de adsorção. A origem do material utilizado para produzir o carvão ativado pode influenciar sua porosidade e, consequentemente, interferir na capacidade do material de remover impurezas. Na figura, é ilustrada esquematicamente a diferença entre as estruturas físicas do carvão comum e do carvão ativado."
+        },
+        {
+          "tipo": "imagem",
+          "arquivo": "imagens/q91_carvao.png",
+          "descricao": "Comparação das estruturas do carvão comum e do carvão ativado, com rótulos dos poros e da impureza adsorvida.",
+          "largura_px": 730,
+          "altura_px": 329,
+          "recorte_pdf_pt": [
+            34,
+            254,
+            279,
+            358
+          ]
+        },
+        {
+          "tipo": "texto",
+          "texto": "CORRÊA, M. A. Cosmetologia: ciência e técnica. São Paulo: Medfarma, 2012 (adaptado). Qual característica do carvão ativado explica a sua maior eficiência nesse processo?"
+        }
+      ],
+      "alternativas": [
+        {
+          "letra": "A",
+          "conteudo": [
+            {
+              "tipo": "texto",
+              "texto": "Massa."
+            }
+          ]
+        },
+        {
+          "letra": "B",
+          "conteudo": [
+            {
+              "tipo": "texto",
+              "texto": "Dureza."
+            }
+          ]
+        },
+        {
+          "letra": "C",
+          "conteudo": [
+            {
+              "tipo": "texto",
+              "texto": "Densidade."
+            }
+          ]
+        },
+        {
+          "letra": "D",
+          "conteudo": [
+            {
+              "tipo": "texto",
+              "texto": "Superfície."
+            }
+          ]
+        },
+        {
+          "letra": "E",
+          "conteudo": [
+            {
+              "tipo": "texto",
+              "texto": "Condutividade."
+            }
+          ]
+        }
+      ],
+      "fonte": {
+        "instituicao": "Inep",
+        "pagina_pdf": 2,
+        "url_prova": "https://download.inep.gov.br/enem/provas_e_gabaritos/2025_PV_impresso_D2_CD7.pdf"
+      }
+    },
+    {
+      "id": "enem_2025_regular_d2_cd7_q092",
+      "ano": 2025,
+      "aplicacao": "regular",
+      "dia": 2,
+      "caderno": 7,
+      "cor": "azul",
+      "numero_original": 92,
+      "area": "Ciências da Natureza",
+      "idioma": null,
+      "conteudo": [
+        {
+          "tipo": "texto",
+          "texto": "A maioria dos seres vivos tem um relógio biológico (ciclo circadiano), que regula as mudanças metabólicas e comportamentais de acordo com o ciclo de 24 horas de rotação da Terra. Em 2015, um artigo publicado na revista Science Advantage mostrou ser possível a transferência dos genes do relógio circadiano da cianobactéria Synechococcus elongatus para o genoma da bactéria Escherichia coli, um organismo não circadiano. CHEN, A. H. et al. Transplantability of a Circardian Lock to Noncircardian Organism. Science Advantage, n. 1, 2015 (adaptado). Estarão presentes no organismo geneticamente modificado os genes do"
+        }
+      ],
+      "alternativas": [
+        {
+          "letra": "A",
+          "conteudo": [
+            {
+              "tipo": "texto",
+              "texto": "metabolismo de E. coli, apenas."
+            }
+          ]
+        },
+        {
+          "letra": "B",
+          "conteudo": [
+            {
+              "tipo": "texto",
+              "texto": "ciclo circadiano de E. coli, apenas."
+            }
+          ]
+        },
+        {
+          "letra": "C",
+          "conteudo": [
+            {
+              "tipo": "texto",
+              "texto": "metabolismo de S. elongatus e do ciclo circadiano de E. coli."
+            }
+          ]
+        },
+        {
+          "letra": "D",
+          "conteudo": [
+            {
+              "tipo": "texto",
+              "texto": "ciclo circadiano de S. elongatus e do metabolismo de E. coli."
+            }
+          ]
+        },
+        {
+          "letra": "E",
+          "conteudo": [
+            {
+              "tipo": "texto",
+              "texto": "ciclo circadiano de S. elongatus e do ciclo circadiano de E. coli."
+            }
+          ]
+        }
+      ],
+      "fonte": {
+        "instituicao": "Inep",
+        "pagina_pdf": 2,
+        "url_prova": "https://download.inep.gov.br/enem/provas_e_gabaritos/2025_PV_impresso_D2_CD7.pdf"
+      }
+    },
+    {
+      "id": "enem_2025_regular_d2_cd7_q093",
+      "ano": 2025,
+      "aplicacao": "regular",
+      "dia": 2,
+      "caderno": 7,
+      "cor": "azul",
+      "numero_original": 93,
+      "area": "Ciências da Natureza",
+      "idioma": null,
+      "conteudo": [
+        {
+          "tipo": "texto",
+          "texto": "Os funcionários de um zoológico observaram um aumento na taxa de mortalidade de aves aquáticas por afogamento. Um grupo de biólogos analisou o comportamento das aves por várias semanas e observou que elas apresentavam dificuldade de flutuação, por causa do encharcamento das penas com água. O aumento na taxa de mortalidade dessas aves estava associado a uma redução na"
+        }
+      ],
+      "alternativas": [
+        {
+          "letra": "A",
+          "conteudo": [
+            {
+              "tipo": "texto",
+              "texto": "dilatação do papo."
+            }
+          ]
+        },
+        {
+          "letra": "B",
+          "conteudo": [
+            {
+              "tipo": "texto",
+              "texto": "reposição de penas das asas."
+            }
+          ]
+        },
+        {
+          "letra": "C",
+          "conteudo": [
+            {
+              "tipo": "texto",
+              "texto": "secreção da glândula uropigial."
+            }
+          ]
+        },
+        {
+          "letra": "D",
+          "conteudo": [
+            {
+              "tipo": "texto",
+              "texto": "formação da membrana natatória."
+            }
+          ]
+        },
+        {
+          "letra": "E",
+          "conteudo": [
+            {
+              "tipo": "texto",
+              "texto": "largura das cavidades de ossos pneumáticos."
+            }
+          ]
+        }
+      ],
+      "fonte": {
+        "instituicao": "Inep",
+        "pagina_pdf": 2,
+        "url_prova": "https://download.inep.gov.br/enem/provas_e_gabaritos/2025_PV_impresso_D2_CD7.pdf"
+      }
+    },
+    {
+      "id": "enem_2025_regular_d2_cd7_q136",
+      "ano": 2025,
+      "aplicacao": "regular",
+      "dia": 2,
+      "caderno": 7,
+      "cor": "azul",
+      "numero_original": 136,
+      "area": "Matemática",
+      "idioma": null,
+      "conteudo": [
+        {
+          "tipo": "texto",
+          "texto": "Uma pessoa pretende instalar um kit de gás natural veicular (GNV) em seu carro. Na loja que escolheu para realizar a compra e instalação desse kit, havia cinco modelos de cilindro para armazenamento do gás, cujas capacidades, em metro cúbico, eram, respectivamente: 10, 14, 17, 21 e 25. O preço do cilindro é proporcional à sua capacidade. Esse carro rodará 30 km diariamente, 7 dias por semana, e o consumo do GNV é de 1 m3 a cada 13 km rodados. A pessoa escolherá o modelo de cilindro de menor preço e que garanta apenas um abastecimento semanal. Nessas condições, qual será a capacidade, em metro cúbico, do cilindro escolhido por essa pessoa?"
+        }
+      ],
+      "alternativas": [
+        {
+          "letra": "A",
+          "conteudo": [
+            {
+              "tipo": "texto",
+              "texto": "10"
+            }
+          ]
+        },
+        {
+          "letra": "B",
+          "conteudo": [
+            {
+              "tipo": "texto",
+              "texto": "14"
+            }
+          ]
+        },
+        {
+          "letra": "C",
+          "conteudo": [
+            {
+              "tipo": "texto",
+              "texto": "17"
+            }
+          ]
+        },
+        {
+          "letra": "D",
+          "conteudo": [
+            {
+              "tipo": "texto",
+              "texto": "21"
+            }
+          ]
+        },
+        {
+          "letra": "E",
+          "conteudo": [
+            {
+              "tipo": "texto",
+              "texto": "25"
+            }
+          ]
+        }
+      ],
+      "fonte": {
+        "instituicao": "Inep",
+        "pagina_pdf": 16,
+        "url_prova": "https://download.inep.gov.br/enem/provas_e_gabaritos/2025_PV_impresso_D2_CD7.pdf"
+      }
+    },
+    {
+      "id": "enem_2025_regular_d2_cd7_q137",
+      "ano": 2025,
+      "aplicacao": "regular",
+      "dia": 2,
+      "caderno": 7,
+      "cor": "azul",
+      "numero_original": 137,
+      "area": "Matemática",
+      "idioma": null,
+      "conteudo": [
+        {
+          "tipo": "texto",
+          "texto": "A reportagem de uma revista abordou o uso de redes sociais pelos internautas brasileiros. Alguns dos dados apurados pela reportagem estão apresentados no infográfico."
+        },
+        {
+          "tipo": "imagem",
+          "arquivo": "imagens/q137_infografico.png",
+          "descricao": "Perfil dos brasileiros nas redes sociais: 90% dos internautas acessam redes sociais; entre esses usuários, 60% são mulheres.",
+          "largura_px": 884,
+          "altura_px": 681,
+          "recorte_pdf_pt": [
+            142,
+            325,
+            434,
+            548
+          ]
+        },
+        {
+          "tipo": "texto",
+          "texto": "Disponível em: http://revistagalileu.globo.com. Acesso em: 22 out. 2015 (adaptado). Segundo os dados do infográfico, ao se escolher aleatoriamente um internauta brasileiro no período ao qual se refere a reportagem, a probabilidade de ele ser um homem que acessa alguma rede social é"
+        }
+      ],
+      "alternativas": [
+        {
+          "letra": "A",
+          "conteudo": [
+            {
+              "tipo": "latex",
+              "expressao": "\\frac{30}{90}"
+            }
+          ]
+        },
+        {
+          "letra": "B",
+          "conteudo": [
+            {
+              "tipo": "latex",
+              "expressao": "\\frac{36}{100}"
+            }
+          ]
+        },
+        {
+          "letra": "C",
+          "conteudo": [
+            {
+              "tipo": "latex",
+              "expressao": "\\frac{40}{100}"
+            }
+          ]
+        },
+        {
+          "letra": "D",
+          "conteudo": [
+            {
+              "tipo": "latex",
+              "expressao": "\\frac{40}{90}"
+            }
+          ]
+        },
+        {
+          "letra": "E",
+          "conteudo": [
+            {
+              "tipo": "latex",
+              "expressao": "\\frac{46}{90}"
+            }
+          ]
+        }
+      ],
+      "fonte": {
+        "instituicao": "Inep",
+        "pagina_pdf": 16,
+        "url_prova": "https://download.inep.gov.br/enem/provas_e_gabaritos/2025_PV_impresso_D2_CD7.pdf"
+      }
+    },
+    {
+      "id": "enem_2025_regular_d2_cd7_q138",
+      "ano": 2025,
+      "aplicacao": "regular",
+      "dia": 2,
+      "caderno": 7,
+      "cor": "azul",
+      "numero_original": 138,
+      "area": "Matemática",
+      "idioma": null,
+      "conteudo": [
+        {
+          "tipo": "texto",
+          "texto": "Em um jogo de computador, um cubo se encontra inicialmente posicionado conforme indicado na figura."
+        },
+        {
+          "tipo": "imagem",
+          "arquivo": "imagens/q138_cubo_inicial.png",
+          "descricao": "Cubo e suas projeções iniciais nos planos coordenados xy, xz e yz.",
+          "largura_px": 553,
+          "altura_px": 447,
+          "recorte_pdf_pt": [
+            190,
+            109,
+            370,
+            260
+          ]
+        },
+        {
+          "tipo": "texto",
+          "texto": "Cada deslocamento efetuado por esse cubo se dá sempre em uma das direções definidas pelos três eixos coordenados. Ao se movimentar a partir da posição inicial, esse cubo se aproximou 3 unidades do plano yz, se afastou 5 unidades do plano xz e se aproximou 4 unidades do plano xy. A figura que apresenta as projeções ortogonais desse cubo sobre os três planos coordenados, após efetuar as movimentações descritas, é"
+        }
+      ],
+      "alternativas": [
+        {
+          "letra": "A",
+          "conteudo": [
+            {
+              "tipo": "imagem",
+              "arquivo": "imagens/q138_alternativa_A.png",
+              "descricao": "Projeções ortogonais representadas na alternativa A.",
+              "largura_px": 502,
+              "altura_px": 406,
+              "recorte_pdf_pt": [
+                33,
+                333,
+                198,
+                466
+              ]
+            }
+          ]
+        },
+        {
+          "letra": "B",
+          "conteudo": [
+            {
+              "tipo": "imagem",
+              "arquivo": "imagens/q138_alternativa_B.png",
+              "descricao": "Projeções ortogonais representadas na alternativa B.",
+              "largura_px": 502,
+              "altura_px": 406,
+              "recorte_pdf_pt": [
+                33,
+                466,
+                198,
+                597
+              ]
+            }
+          ]
+        },
+        {
+          "letra": "C",
+          "conteudo": [
+            {
+              "tipo": "imagem",
+              "arquivo": "imagens/q138_alternativa_C.png",
+              "descricao": "Projeções ortogonais representadas na alternativa C.",
+              "largura_px": 502,
+              "altura_px": 406,
+              "recorte_pdf_pt": [
+                33,
+                597,
+                198,
+                731
+              ]
+            }
+          ]
+        },
+        {
+          "letra": "D",
+          "conteudo": [
+            {
+              "tipo": "imagem",
+              "arquivo": "imagens/q138_alternativa_D.png",
+              "descricao": "Projeções ortogonais representadas na alternativa D.",
+              "largura_px": 502,
+              "altura_px": 406,
+              "recorte_pdf_pt": [
+                293,
+                333,
+                460,
+                466
+              ]
+            }
+          ]
+        },
+        {
+          "letra": "E",
+          "conteudo": [
+            {
+              "tipo": "imagem",
+              "arquivo": "imagens/q138_alternativa_E.png",
+              "descricao": "Projeções ortogonais representadas na alternativa E.",
+              "largura_px": 501,
+              "altura_px": 406,
+              "recorte_pdf_pt": [
+                293,
+                466,
+                460,
+                600
+              ]
+            }
+          ]
+        }
+      ],
+      "fonte": {
+        "instituicao": "Inep",
+        "pagina_pdf": 17,
+        "url_prova": "https://download.inep.gov.br/enem/provas_e_gabaritos/2025_PV_impresso_D2_CD7.pdf"
+      }
+    }
+  ]
+}

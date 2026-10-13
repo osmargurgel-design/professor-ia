@@ -226,3 +226,15 @@ Finalize com: **Nota estimada: X/1000** · ponto mais forte · principal ponto a
 
 SYSTEM_PROMPT_ENEM += BLOCO_FOCO_APRENDIZAGEM
 SYSTEM_PROMPT_REDACAO += BLOCO_FOCO_APRENDIZAGEM
+
+# ─── Recursos que gastam cota da IA (chaves liga/desliga) ─────────────────────
+# O plano gratuito do Gemini permite poucas chamadas por dia, então os recursos abaixo ficam desligados
+# até haver um modelo pago. O código continua no projeto: para religar, troque False por True.
+
+# Botão "Explicar com o Professor IA" na revisão das questões oficiais (1 chamada do Gemini por clique).
+EXPLICACAO_IA_ATIVA = False
+
+# Modos do menu "Simulados e Treinos" que geram as questões com o Gemini (1 chamada por teste iniciado).
+# Escondidos do menu enquanto estiverem em False. O código de geração continua em testes.py.
+SIMULADO_IA_ATIVO = False   # "Simulado gerado por IA"
+TREINO_IA_ATIVO = False     # "Treino por matéria (IA)"

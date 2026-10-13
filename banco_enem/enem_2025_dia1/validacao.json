@@ -1,0 +1,830 @@
+{
+  "questoes": 85,
+  "imagens": 17,
+  "blocos_latex": 0,
+  "fontes_sha256": {
+    "2025_PV_impresso_D1_CD1.pdf": "a0f19f878d4ef3ba94c3e0f5ef9e57c13fb046d4bb362f72651898b473ddb7c8",
+    "2025_GB_impresso_D1_CD1.pdf": "583ac1950cd1927c42c971c270f96c0e33816844084fd5866a13bf94d8e08a81"
+  },
+  "observacoes": "PDFs oficiais; texto-base da página 6 repetido em q006–q010, mantendo pagina_pdf=7. q031: texto rasterizado transcrito com OCR e conferência visual; não verificável contra camada textual. Validador fornecido executado sem alterações; seus resultados e limitações estão abaixo e em pendencias.md. Não testado no app do usuário.",
+  "verificacoes": {
+    "numeracao": "85/85, de 6 a 90, sem faltas ou repetições",
+    "alternativas": "85/85 com A–E, em ordem",
+    "gabarito": "85/85 iguais ao PDF oficial",
+    "areas": {
+      "Linguagens": 40,
+      "Ciências Humanas": 45
+    },
+    "imagens_dimensoes": 17,
+    "imagens_sem_referencia": 0,
+    "maior_imagem_bytes": 467272,
+    "cabecalhos_rodapes_detectados": 0,
+    "integridade_texto_extraido": {
+      "questoes_ok": 85,
+      "questoes_com_divergencia": [],
+      "excecao": "q031: dois blocos de título/poema OCR não entram nessa comparação"
+    },
+    "comparacao_complementar_pypdf": {
+      "metodo": "Blocos inteiros normalizados por acentos, pontuação e quebras; remove índices de linha dos textos numerados. Inclui página 6 para q006–q010. Exclui dois blocos rasterizados de q031.",
+      "questoes_com_falha": [],
+      "detalhes": [
+        {
+          "numero_original": 6,
+          "paginas_consultadas": [
+            6,
+            7,
+            8
+          ],
+          "blocos_texto": 14,
+          "blocos_nao_encontrados": []
+        },
+        {
+          "numero_original": 7,
+          "paginas_consultadas": [
+            6,
+            7,
+            8
+          ],
+          "blocos_texto": 14,
+          "blocos_nao_encontrados": []
+        },
+        {
+          "numero_original": 8,
+          "paginas_consultadas": [
+            6,
+            7,
+            8
+          ],
+          "blocos_texto": 14,
+          "blocos_nao_encontrados": []
+        },
+        {
+          "numero_original": 9,
+          "paginas_consultadas": [
+            6,
+            7,
+            8
+          ],
+          "blocos_texto": 14,
+          "blocos_nao_encontrados": []
+        },
+        {
+          "numero_original": 10,
+          "paginas_consultadas": [
+            6,
+            7,
+            8
+          ],
+          "blocos_texto": 14,
+          "blocos_nao_encontrados": []
+        },
+        {
+          "numero_original": 11,
+          "paginas_consultadas": [
+            8,
+            9
+          ],
+          "blocos_texto": 12,
+          "blocos_nao_encontrados": []
+        },
+        {
+          "numero_original": 12,
+          "paginas_consultadas": [
+            8,
+            9
+          ],
+          "blocos_texto": 8,
+          "blocos_nao_encontrados": []
+        },
+        {
+          "numero_original": 13,
+          "paginas_consultadas": [
+            8,
+            9
+          ],
+          "blocos_texto": 10,
+          "blocos_nao_encontrados": []
+        },
+        {
+          "numero_original": 14,
+          "paginas_consultadas": [
+            8,
+            9
+          ],
+          "blocos_texto": 7,
+          "blocos_nao_encontrados": []
+        },
+        {
+          "numero_original": 15,
+          "paginas_consultadas": [
+            9,
+            10
+          ],
+          "blocos_texto": 8,
+          "blocos_nao_encontrados": []
+        },
+        {
+          "numero_original": 16,
+          "paginas_consultadas": [
+            9,
+            10
+          ],
+          "blocos_texto": 9,
+          "blocos_nao_encontrados": []
+        },
+        {
+          "numero_original": 17,
+          "paginas_consultadas": [
+            9,
+            10
+          ],
+          "blocos_texto": 12,
+          "blocos_nao_encontrados": []
+        },
+        {
+          "numero_original": 18,
+          "paginas_consultadas": [
+            10,
+            11
+          ],
+          "blocos_texto": 8,
+          "blocos_nao_encontrados": []
+        },
+        {
+          "numero_original": 19,
+          "paginas_consultadas": [
+            10,
+            11
+          ],
+          "blocos_texto": 8,
+          "blocos_nao_encontrados": []
+        },
+        {
+          "numero_original": 20,
+          "paginas_consultadas": [
+            10,
+            11
+          ],
+          "blocos_texto": 9,
+          "blocos_nao_encontrados": []
+        },
+        {
+          "numero_original": 21,
+          "paginas_consultadas": [
+            10,
+            11
+          ],
+          "blocos_texto": 10,
+          "blocos_nao_encontrados": []
+        },
+        {
+          "numero_original": 22,
+          "paginas_consultadas": [
+            11,
+            12
+          ],
+          "blocos_texto": 11,
+          "blocos_nao_encontrados": []
+        },
+        {
+          "numero_original": 23,
+          "paginas_consultadas": [
+            11,
+            12
+          ],
+          "blocos_texto": 13,
+          "blocos_nao_encontrados": []
+        },
+        {
+          "numero_original": 24,
+          "paginas_consultadas": [
+            12,
+            13
+          ],
+          "blocos_texto": 7,
+          "blocos_nao_encontrados": []
+        },
+        {
+          "numero_original": 25,
+          "paginas_consultadas": [
+            12,
+            13
+          ],
+          "blocos_texto": 11,
+          "blocos_nao_encontrados": []
+        },
+        {
+          "numero_original": 26,
+          "paginas_consultadas": [
+            13,
+            14
+          ],
+          "blocos_texto": 7,
+          "blocos_nao_encontrados": []
+        },
+        {
+          "numero_original": 27,
+          "paginas_consultadas": [
+            13,
+            14
+          ],
+          "blocos_texto": 8,
+          "blocos_nao_encontrados": []
+        },
+        {
+          "numero_original": 28,
+          "paginas_consultadas": [
+            13,
+            14
+          ],
+          "blocos_texto": 9,
+          "blocos_nao_encontrados": []
+        },
+        {
+          "numero_original": 29,
+          "paginas_consultadas": [
+            13,
+            14
+          ],
+          "blocos_texto": 9,
+          "blocos_nao_encontrados": []
+        },
+        {
+          "numero_original": 30,
+          "paginas_consultadas": [
+            14,
+            15
+          ],
+          "blocos_texto": 12,
+          "blocos_nao_encontrados": []
+        },
+        {
+          "numero_original": 31,
+          "paginas_consultadas": [
+            14,
+            15
+          ],
+          "blocos_texto": 7,
+          "blocos_nao_encontrados": []
+        },
+        {
+          "numero_original": 32,
+          "paginas_consultadas": [
+            14,
+            15
+          ],
+          "blocos_texto": 9,
+          "blocos_nao_encontrados": []
+        },
+        {
+          "numero_original": 33,
+          "paginas_consultadas": [
+            14,
+            15
+          ],
+          "blocos_texto": 7,
+          "blocos_nao_encontrados": []
+        },
+        {
+          "numero_original": 34,
+          "paginas_consultadas": [
+            15,
+            16
+          ],
+          "blocos_texto": 7,
+          "blocos_nao_encontrados": []
+        },
+        {
+          "numero_original": 35,
+          "paginas_consultadas": [
+            15,
+            16
+          ],
+          "blocos_texto": 8,
+          "blocos_nao_encontrados": []
+        },
+        {
+          "numero_original": 36,
+          "paginas_consultadas": [
+            15,
+            16
+          ],
+          "blocos_texto": 9,
+          "blocos_nao_encontrados": []
+        },
+        {
+          "numero_original": 37,
+          "paginas_consultadas": [
+            16,
+            17
+          ],
+          "blocos_texto": 15,
+          "blocos_nao_encontrados": []
+        },
+        {
+          "numero_original": 38,
+          "paginas_consultadas": [
+            16,
+            17
+          ],
+          "blocos_texto": 8,
+          "blocos_nao_encontrados": []
+        },
+        {
+          "numero_original": 39,
+          "paginas_consultadas": [
+            17,
+            18
+          ],
+          "blocos_texto": 11,
+          "blocos_nao_encontrados": []
+        },
+        {
+          "numero_original": 40,
+          "paginas_consultadas": [
+            17,
+            18
+          ],
+          "blocos_texto": 12,
+          "blocos_nao_encontrados": []
+        },
+        {
+          "numero_original": 41,
+          "paginas_consultadas": [
+            18,
+            19
+          ],
+          "blocos_texto": 12,
+          "blocos_nao_encontrados": []
+        },
+        {
+          "numero_original": 42,
+          "paginas_consultadas": [
+            18,
+            19
+          ],
+          "blocos_texto": 7,
+          "blocos_nao_encontrados": []
+        },
+        {
+          "numero_original": 43,
+          "paginas_consultadas": [
+            19,
+            20
+          ],
+          "blocos_texto": 10,
+          "blocos_nao_encontrados": []
+        },
+        {
+          "numero_original": 44,
+          "paginas_consultadas": [
+            19,
+            20
+          ],
+          "blocos_texto": 12,
+          "blocos_nao_encontrados": []
+        },
+        {
+          "numero_original": 45,
+          "paginas_consultadas": [
+            19,
+            20
+          ],
+          "blocos_texto": 10,
+          "blocos_nao_encontrados": []
+        },
+        {
+          "numero_original": 46,
+          "paginas_consultadas": [
+            22,
+            23
+          ],
+          "blocos_texto": 10,
+          "blocos_nao_encontrados": []
+        },
+        {
+          "numero_original": 47,
+          "paginas_consultadas": [
+            22,
+            23
+          ],
+          "blocos_texto": 8,
+          "blocos_nao_encontrados": []
+        },
+        {
+          "numero_original": 48,
+          "paginas_consultadas": [
+            22,
+            23
+          ],
+          "blocos_texto": 8,
+          "blocos_nao_encontrados": []
+        },
+        {
+          "numero_original": 49,
+          "paginas_consultadas": [
+            23,
+            24
+          ],
+          "blocos_texto": 11,
+          "blocos_nao_encontrados": []
+        },
+        {
+          "numero_original": 50,
+          "paginas_consultadas": [
+            23,
+            24
+          ],
+          "blocos_texto": 8,
+          "blocos_nao_encontrados": []
+        },
+        {
+          "numero_original": 51,
+          "paginas_consultadas": [
+            23,
+            24
+          ],
+          "blocos_texto": 9,
+          "blocos_nao_encontrados": []
+        },
+        {
+          "numero_original": 52,
+          "paginas_consultadas": [
+            24,
+            25
+          ],
+          "blocos_texto": 8,
+          "blocos_nao_encontrados": []
+        },
+        {
+          "numero_original": 53,
+          "paginas_consultadas": [
+            24,
+            25
+          ],
+          "blocos_texto": 12,
+          "blocos_nao_encontrados": []
+        },
+        {
+          "numero_original": 54,
+          "paginas_consultadas": [
+            24,
+            25
+          ],
+          "blocos_texto": 8,
+          "blocos_nao_encontrados": []
+        },
+        {
+          "numero_original": 55,
+          "paginas_consultadas": [
+            24,
+            25
+          ],
+          "blocos_texto": 8,
+          "blocos_nao_encontrados": []
+        },
+        {
+          "numero_original": 56,
+          "paginas_consultadas": [
+            24,
+            25
+          ],
+          "blocos_texto": 8,
+          "blocos_nao_encontrados": []
+        },
+        {
+          "numero_original": 57,
+          "paginas_consultadas": [
+            25,
+            26
+          ],
+          "blocos_texto": 8,
+          "blocos_nao_encontrados": []
+        },
+        {
+          "numero_original": 58,
+          "paginas_consultadas": [
+            25,
+            26
+          ],
+          "blocos_texto": 8,
+          "blocos_nao_encontrados": []
+        },
+        {
+          "numero_original": 59,
+          "paginas_consultadas": [
+            25,
+            26
+          ],
+          "blocos_texto": 8,
+          "blocos_nao_encontrados": []
+        },
+        {
+          "numero_original": 60,
+          "paginas_consultadas": [
+            25,
+            26
+          ],
+          "blocos_texto": 8,
+          "blocos_nao_encontrados": []
+        },
+        {
+          "numero_original": 61,
+          "paginas_consultadas": [
+            25,
+            26
+          ],
+          "blocos_texto": 8,
+          "blocos_nao_encontrados": []
+        },
+        {
+          "numero_original": 62,
+          "paginas_consultadas": [
+            26,
+            27
+          ],
+          "blocos_texto": 8,
+          "blocos_nao_encontrados": []
+        },
+        {
+          "numero_original": 63,
+          "paginas_consultadas": [
+            26,
+            27
+          ],
+          "blocos_texto": 9,
+          "blocos_nao_encontrados": []
+        },
+        {
+          "numero_original": 64,
+          "paginas_consultadas": [
+            26,
+            27
+          ],
+          "blocos_texto": 8,
+          "blocos_nao_encontrados": []
+        },
+        {
+          "numero_original": 65,
+          "paginas_consultadas": [
+            27,
+            28
+          ],
+          "blocos_texto": 9,
+          "blocos_nao_encontrados": []
+        },
+        {
+          "numero_original": 66,
+          "paginas_consultadas": [
+            27,
+            28
+          ],
+          "blocos_texto": 8,
+          "blocos_nao_encontrados": []
+        },
+        {
+          "numero_original": 67,
+          "paginas_consultadas": [
+            27,
+            28
+          ],
+          "blocos_texto": 8,
+          "blocos_nao_encontrados": []
+        },
+        {
+          "numero_original": 68,
+          "paginas_consultadas": [
+            27,
+            28
+          ],
+          "blocos_texto": 7,
+          "blocos_nao_encontrados": []
+        },
+        {
+          "numero_original": 69,
+          "paginas_consultadas": [
+            27,
+            28
+          ],
+          "blocos_texto": 8,
+          "blocos_nao_encontrados": []
+        },
+        {
+          "numero_original": 70,
+          "paginas_consultadas": [
+            28,
+            29
+          ],
+          "blocos_texto": 8,
+          "blocos_nao_encontrados": []
+        },
+        {
+          "numero_original": 71,
+          "paginas_consultadas": [
+            28,
+            29
+          ],
+          "blocos_texto": 8,
+          "blocos_nao_encontrados": []
+        },
+        {
+          "numero_original": 72,
+          "paginas_consultadas": [
+            28,
+            29
+          ],
+          "blocos_texto": 11,
+          "blocos_nao_encontrados": []
+        },
+        {
+          "numero_original": 73,
+          "paginas_consultadas": [
+            28,
+            29
+          ],
+          "blocos_texto": 8,
+          "blocos_nao_encontrados": []
+        },
+        {
+          "numero_original": 74,
+          "paginas_consultadas": [
+            28,
+            29
+          ],
+          "blocos_texto": 8,
+          "blocos_nao_encontrados": []
+        },
+        {
+          "numero_original": 75,
+          "paginas_consultadas": [
+            28,
+            29
+          ],
+          "blocos_texto": 8,
+          "blocos_nao_encontrados": []
+        },
+        {
+          "numero_original": 76,
+          "paginas_consultadas": [
+            29,
+            30
+          ],
+          "blocos_texto": 8,
+          "blocos_nao_encontrados": []
+        },
+        {
+          "numero_original": 77,
+          "paginas_consultadas": [
+            29,
+            30
+          ],
+          "blocos_texto": 9,
+          "blocos_nao_encontrados": []
+        },
+        {
+          "numero_original": 78,
+          "paginas_consultadas": [
+            29,
+            30
+          ],
+          "blocos_texto": 8,
+          "blocos_nao_encontrados": []
+        },
+        {
+          "numero_original": 79,
+          "paginas_consultadas": [
+            29,
+            30
+          ],
+          "blocos_texto": 8,
+          "blocos_nao_encontrados": []
+        },
+        {
+          "numero_original": 80,
+          "paginas_consultadas": [
+            29,
+            30
+          ],
+          "blocos_texto": 8,
+          "blocos_nao_encontrados": []
+        },
+        {
+          "numero_original": 81,
+          "paginas_consultadas": [
+            30,
+            31
+          ],
+          "blocos_texto": 8,
+          "blocos_nao_encontrados": []
+        },
+        {
+          "numero_original": 82,
+          "paginas_consultadas": [
+            30,
+            31
+          ],
+          "blocos_texto": 8,
+          "blocos_nao_encontrados": []
+        },
+        {
+          "numero_original": 83,
+          "paginas_consultadas": [
+            30,
+            31
+          ],
+          "blocos_texto": 8,
+          "blocos_nao_encontrados": []
+        },
+        {
+          "numero_original": 84,
+          "paginas_consultadas": [
+            30,
+            31
+          ],
+          "blocos_texto": 8,
+          "blocos_nao_encontrados": []
+        },
+        {
+          "numero_original": 85,
+          "paginas_consultadas": [
+            30,
+            31
+          ],
+          "blocos_texto": 12,
+          "blocos_nao_encontrados": []
+        },
+        {
+          "numero_original": 86,
+          "paginas_consultadas": [
+            31,
+            32
+          ],
+          "blocos_texto": 10,
+          "blocos_nao_encontrados": []
+        },
+        {
+          "numero_original": 87,
+          "paginas_consultadas": [
+            31,
+            32
+          ],
+          "blocos_texto": 8,
+          "blocos_nao_encontrados": []
+        },
+        {
+          "numero_original": 88,
+          "paginas_consultadas": [
+            31,
+            32
+          ],
+          "blocos_texto": 8,
+          "blocos_nao_encontrados": []
+        },
+        {
+          "numero_original": 89,
+          "paginas_consultadas": [
+            31,
+            32
+          ],
+          "blocos_texto": 15,
+          "blocos_nao_encontrados": []
+        },
+        {
+          "numero_original": 90,
+          "paginas_consultadas": [
+            31,
+            32
+          ],
+          "blocos_texto": 8,
+          "blocos_nao_encontrados": []
+        }
+      ]
+    },
+    "validador_fornecido": {
+      "resultado": "REPROVADO",
+      "erros": [
+        "[enem_2025_regular_d1_cd1_q006] 478 trecho(s) do texto não existem na página 7 do PDF (12% achado). Revise perto de: «…A escrita e suas tecnologias sofrem …» | «…A escrita e suas tecnologias sofrem interes…» | «… e suas tecnologias sofrem interessantes metamor…»",
+        "[enem_2025_regular_d1_cd1_q007] 478 trecho(s) do texto não existem na página 7 do PDF (14% achado). Revise perto de: «…A escrita e suas tecnologias sofrem …» | «…A escrita e suas tecnologias sofrem interes…» | «… e suas tecnologias sofrem interessantes metamor…»",
+        "[enem_2025_regular_d1_cd1_q008] 478 trecho(s) do texto não existem na página 7 do PDF (13% achado). Revise perto de: «…A escrita e suas tecnologias sofrem …» | «…A escrita e suas tecnologias sofrem interes…» | «… e suas tecnologias sofrem interessantes metamor…»",
+        "[enem_2025_regular_d1_cd1_q009] 478 trecho(s) do texto não existem na página 7 do PDF (10% achado). Revise perto de: «…A escrita e suas tecnologias sofrem …» | «…A escrita e suas tecnologias sofrem interes…» | «… e suas tecnologias sofrem interessantes metamor…»",
+        "[enem_2025_regular_d1_cd1_q010] 478 trecho(s) do texto não existem na página 7 do PDF (17% achado). Revise perto de: «…A escrita e suas tecnologias sofrem …» | «…A escrita e suas tecnologias sofrem interes…» | «… e suas tecnologias sofrem interessantes metamor…»",
+        "[enem_2025_regular_d1_cd1_q031] 54 trecho(s) do texto não existem na página 14 do PDF (49% achado). Revise perto de: «…dezenove…» | «…Cada vez mais somos convocados para …» | «…Cada vez mais somos convocados para dentro …»",
+        "[enem_2025_regular_d1_cd1_q038] 17 trecho(s) do texto não existem na página 16 do PDF (89% achado). Revise perto de: «…1 O mais assustador do meteoro que c…» | «…ria e explodiu no ar como 2 várias bombas atômic…» | «…plodiu no ar como 2 várias bombas atômicas é que…»"
+      ],
+      "avisos": [],
+      "estatisticas": {
+        "questoes": 85,
+        "trechos": 12473,
+        "achados": 10012,
+        "gabaritos_ok": 85,
+        "gabaritos_total": 85
+      },
+      "alterado": false
+    },
+    "nao_verificado": [
+      "Texto rasterizado de q031 por comparação automática com camada textual (revisado visualmente).",
+      "Leitura interna de todos os rótulos das figuras por OCR ou comparação textual automática (recortes revisados visualmente).",
+      "Importação e apresentação no aplicativo escolar do usuário."
+    ]
+  }
+}

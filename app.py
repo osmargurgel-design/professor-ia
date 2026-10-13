@@ -20,6 +20,7 @@ from utils import (
     checar_topico_sensivel,
     obter_cliente_gemini,
 )
+from testes import render_testes
 
 VERSION = "26/05 · Redação ENEM"
 
@@ -249,6 +250,8 @@ with st.sidebar:
         unsafe_allow_html=True,
     )
 
+    _em_testes = st.session_state.get("view") == "testes"
+
     st.markdown("<p class='sidebar-section'>📘 Matérias</p>", unsafe_allow_html=True)
     for s in SUBJECTS:
         if s["id"] in ("diversos", "enem", "redacao"):
@@ -258,8 +261,9 @@ with st.sidebar:
             f"{s['emoji']}  {s['label']}",
             key=f"sb_{s['id']}",
             use_container_width=True,
-            type="primary" if active else "secondary",
+            type="primary" if active and not _em_testes else "secondary",
         ):
+            st.session_state.view = "chat"
             if not active:
                 st.session_state.subject = s["id"]
                 st.session_state.messages = []
@@ -273,12 +277,24 @@ with st.sidebar:
             f"{_s['emoji']}  {_s['label']}",
             key=f"sb_{_sid}",
             use_container_width=True,
-            type="primary" if _active else "secondary",
+            type="primary" if _active and not _em_testes else "secondary",
         ):
+            st.session_state.view = "chat"
             if not _active:
                 st.session_state.subject = _sid
                 st.session_state.messages = []
                 st.rerun()
+
+    st.markdown("<p class='sidebar-section'>📝 Simulados</p>", unsafe_allow_html=True)
+    if st.button(
+        "📝  Simulados e Treinos",
+        key="sb_testes",
+        use_container_width=True,
+        type="primary" if _em_testes else "secondary",
+    ):
+        if not _em_testes:
+            st.session_state.view = "testes"
+            st.rerun()
 
     st.markdown("<p class='sidebar-section'>💬 Modo Livre</p>", unsafe_allow_html=True)
     s_div = next(s for s in SUBJECTS if s["id"] == "diversos")
@@ -287,8 +303,9 @@ with st.sidebar:
         f"{s_div['emoji']}  {s_div['label']}",
         key="sb_diversos",
         use_container_width=True,
-        type="primary" if active_div else "secondary",
+        type="primary" if active_div and not _em_testes else "secondary",
     ):
+        st.session_state.view = "chat"
         if not active_div:
             st.session_state.subject = "diversos"
             st.session_state.messages = []
@@ -304,6 +321,12 @@ with st.sidebar:
         "</small>",
         unsafe_allow_html=True,
     )
+
+# ─── Tela de Testes (módulo separado) ─────────────────────────────────────────
+# Quando ativa, substitui todo o chat abaixo; o histórico do chat é preservado.
+if st.session_state.get("view") == "testes":
+    render_testes(st.session_state.get("api_key", ""))
+    st.stop()
 
 # ─── Cabeçalho ────────────────────────────────────────────────────────────────
 current_subject = next(s for s in SUBJECTS if s["id"] == st.session_state.subject)

@@ -1,0 +1,15 @@
+{
+  "questoes": 12,
+  "areas": 4,
+  "verificacao_imagens": "9 imagens verificadas e recortes inspecionados visualmente",
+  "json_e_vinculos": "aprovados",
+  "gabaritos": "12 respostas conferidas nos PDFs oficiais",
+  "app": "sintaxe e execução com interface Streamlit simulada; cenários sem respostas e todas corretas",
+  "limitacao": "Não executado em servidor Streamlit real neste ambiente. Validar no aplicativo do usuário.",
+  "fontes_sha256": {
+    "2025_PV_impresso_D1_CD1.pdf": "a0f19f878d4ef3ba94c3e0f5ef9e57c13fb046d4bb362f72651898b473ddb7c8",
+    "2025_GB_impresso_D1_CD1.pdf": "583ac1950cd1927c42c971c270f96c0e33816844084fd5866a13bf94d8e08a81",
+    "2025_PV_impresso_D2_CD7.pdf": "39af0f0eaf3e30a3cd211bc19db9029204703965a2c76ff232fb3109181fa7c8",
+    "2025_GB_impresso_D2_CD7.pdf": "9e2d470af35378df532173414ec7077c3ce4df38c084a5f1258579fdf9270aef"
+  }
+}

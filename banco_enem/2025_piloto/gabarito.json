@@ -1,0 +1,77 @@
+{
+  "versao_esquema": "1.0",
+  "respostas": [
+    {
+      "questao_id": "enem_2025_regular_d1_cd1_q011",
+      "alternativa_correta": "B",
+      "situacao": "valida",
+      "fonte": "https://download.inep.gov.br/enem/provas_e_gabaritos/2025_GB_impresso_D1_CD1.pdf"
+    },
+    {
+      "questao_id": "enem_2025_regular_d1_cd1_q012",
+      "alternativa_correta": "C",
+      "situacao": "valida",
+      "fonte": "https://download.inep.gov.br/enem/provas_e_gabaritos/2025_GB_impresso_D1_CD1.pdf"
+    },
+    {
+      "questao_id": "enem_2025_regular_d1_cd1_q013",
+      "alternativa_correta": "E",
+      "situacao": "valida",
+      "fonte": "https://download.inep.gov.br/enem/provas_e_gabaritos/2025_GB_impresso_D1_CD1.pdf"
+    },
+    {
+      "questao_id": "enem_2025_regular_d1_cd1_q046",
+      "alternativa_correta": "E",
+      "situacao": "valida",
+      "fonte": "https://download.inep.gov.br/enem/provas_e_gabaritos/2025_GB_impresso_D1_CD1.pdf"
+    },
+    {
+      "questao_id": "enem_2025_regular_d1_cd1_q047",
+      "alternativa_correta": "D",
+      "situacao": "valida",
+      "fonte": "https://download.inep.gov.br/enem/provas_e_gabaritos/2025_GB_impresso_D1_CD1.pdf"
+    },
+    {
+      "questao_id": "enem_2025_regular_d1_cd1_q048",
+      "alternativa_correta": "E",
+      "situacao": "valida",
+      "fonte": "https://download.inep.gov.br/enem/provas_e_gabaritos/2025_GB_impresso_D1_CD1.pdf"
+    },
+    {
+      "questao_id": "enem_2025_regular_d2_cd7_q091",
+      "alternativa_correta": "D",
+      "situacao": "valida",
+      "fonte": "https://download.inep.gov.br/enem/provas_e_gabaritos/2025_GB_impresso_D2_CD7.pdf"
+    },
+    {
+      "questao_id": "enem_2025_regular_d2_cd7_q092",
+      "alternativa_correta": "D",
+      "situacao": "valida",
+      "fonte": "https://download.inep.gov.br/enem/provas_e_gabaritos/2025_GB_impresso_D2_CD7.pdf"
+    },
+    {
+      "questao_id": "enem_2025_regular_d2_cd7_q093",
+      "alternativa_correta": "C",
+      "situacao": "valida",
+      "fonte": "https://download.inep.gov.br/enem/provas_e_gabaritos/2025_GB_impresso_D2_CD7.pdf"
+    },
+    {
+      "questao_id": "enem_2025_regular_d2_cd7_q136",
+      "alternativa_correta": "C",
+      "situacao": "valida",
+      "fonte": "https://download.inep.gov.br/enem/provas_e_gabaritos/2025_GB_impresso_D2_CD7.pdf"
+    },
+    {
+      "questao_id": "enem_2025_regular_d2_cd7_q137",
+      "alternativa_correta": "B",
+      "situacao": "valida",
+      "fonte": "https://download.inep.gov.br/enem/provas_e_gabaritos/2025_GB_impresso_D2_CD7.pdf"
+    },
+    {
+      "questao_id": "enem_2025_regular_d2_cd7_q138",
+      "alternativa_correta": "E",
+      "situacao": "valida",
+      "fonte": "https://download.inep.gov.br/enem/provas_e_gabaritos/2025_GB_impresso_D2_CD7.pdf"
+    }
+  ]
+}
