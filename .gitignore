@@ -9,3 +9,8 @@ __pycache__/
 *.pyo
 .venv/
 venv/
+
+# Originais dos arquivos de prova (backup local do script de ajuste)
+banco_enem_originais/
+ferramentas/_pdfs/
+ferramentas/kit_para_outra_IA.zip
